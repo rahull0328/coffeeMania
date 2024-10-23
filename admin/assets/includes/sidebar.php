@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>CoffeeMania | Admin</title>
     <link rel="shortcut icon" type="image/png" href="<?= urlOf('admin/assets/images/logos/favicon.png'); ?>" />
     <link rel="stylesheet" href="<?=  urlOf('admin/assets/css/styles.min.css'); ?>" />
 </head>
@@ -53,11 +53,11 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= urlOf('admin/pages/products.php') ?>" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-alert-circle"></i>
+                                    <i class="ti ti-archive"></i>
                                 </span>
-                                <span class="hide-menu">Alerts</span>
+                                <span class="hide-menu">Products</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
