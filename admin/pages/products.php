@@ -151,7 +151,6 @@ $data = mysqli_fetch_all($result);
                 processData: false,
                 success: function(response){
                     if(response.success){
-                        console.log(response)
                         alert("Product Added !");
                         window.location.reload();
                     } else {
