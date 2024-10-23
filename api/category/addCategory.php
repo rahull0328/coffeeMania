@@ -2,8 +2,19 @@
 
     require '../../assets/includes/config.php';
 
-    $catName = $_POST['cat_name'];
-    $query = "INSERT INTO categories(`cat_name`) VALUES('$catName')";
-    mysqli_query($con, $query);
+    header('Content-Type: application/json');
+
+    $catName = $_POST['categoryName'];
+
+    $query = "INSERT INTO `categories`(`cat_name`) VALUES('$catName')";
+    $result = mysqli_query($con, $query);
+
+    $response = [
+        "success" => true,
+        "message" => "Registration successful!"
+    ];
+    
+    // Return the response as JSON
+    echo json_encode($response);
 
     mysqli_close($con);
