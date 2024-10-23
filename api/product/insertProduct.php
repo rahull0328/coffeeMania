@@ -25,10 +25,10 @@
     $result = mysqli_query($con, $query);
 
     if ($result) {
-        echo json_encode(["status" => true, "message" => "Product added successfully!"]);
+        echo json_encode(["success" => true, "message" => "Product added successfully!"]);
     } else {
-        echo json_encode(["status" => false, "message" => "Error inserting product: " . mysqli_error($con)]);
+        echo json_encode(["error" => false, "message" => "Error inserting product: " . mysqli_error($con)]);
     }
     
-        
+    
     mysqli_close($con);
