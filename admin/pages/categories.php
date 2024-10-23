@@ -23,20 +23,20 @@ $data = mysqli_fetch_all($result);
                         </svg>
                     </h5>
                     <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle">
+                        <table class="table text-nowrap mb-0 align-middle bg-dark text-white" style="border-radius: 10px;">
                             <thead class="text-dark fs-4">
                                 <tr>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Sr No.</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Sr No.</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Category Name</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Category Name</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Update</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Update</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-o align-middle">Delete</h6>
+                                        <h6 class="fw-semibold mb-o align-middle text-white">Delete</h6>
                                     </th>
                                 </tr>
                             </thead>
@@ -44,14 +44,14 @@ $data = mysqli_fetch_all($result);
                                 <?php for ($i = 0; $i < count($data); $i++) { ?>
                                     <tr>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0"><?= $i + 1  ?></h6>
+                                            <h6 class="fw-semibold mb-0 text-white"><?= $i + 1  ?></h6>
                                         </td>
                                         <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1"><?= $data[$i][1] ?></h6>
+                                            <h6 class="fw-semibold mb-1 text-white"><?= $data[$i][1] ?></h6>
                                         </td>
                                         <td class="border-bottom-0">
                                             <a class="mb-0 fw-normal align-middle">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" onclick="showUpdateModal()" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" onclick="showUpdateModal(<?= $data[$i][0] ?>, '<?= $data[$i][1] ?>')" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
                                                     <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
@@ -61,7 +61,7 @@ $data = mysqli_fetch_all($result);
                                         </td>
                                         <td class="border-bottom-0">
                                             <a class="mb-0 fw-normal align-middle" href="<?= urlOf('api/category/removeCategory.php?id=') . $data[$i][0] ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                     <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3"></path>
                                                     <path d="M18 13.3l-6.3 -6.3"></path>
@@ -84,7 +84,7 @@ $data = mysqli_fetch_all($result);
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="" class="form-label mb-3">Category Name : </label>
-                        <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Enter Category Name : ">
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Enter Category Name : " required>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
@@ -94,7 +94,7 @@ $data = mysqli_fetch_all($result);
 
     <!-- show update model -->
     <dialog id="updateCategoryModal" style="top: 50%;left: 50%;border:0px;border-radius:10px; height: 50%;width: 30%;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);">
-        <form method="POST">
+        <form method="POST" action="<?= urlOf('api/category/updateCategory.php') ?>">
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
@@ -121,7 +121,7 @@ $data = mysqli_fetch_all($result);
 
         //inserting category
         function insertCategory(event) {
-
+            
             event.preventDefault();
 
             let data = {
@@ -145,35 +145,11 @@ $data = mysqli_fetch_all($result);
                 }
             });
         }
-
         $("#insertForm").on("submit", insertCategory);
-
-        //deleting category
-        function removeCategory(event) {
-
-            event.preventDefault();
-
-            $.ajax({
-                url: "../../api/category/removeCategory.php",
-                method: "POST",
-                data: data,
-                success: function(response) {
-                    if (response.success) {
-                        alert("Are You Sure You Want To Delete This Category?");
-                        window.location.reload();
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
     </script>
 
-    <?php
+<?php
 
-    include pathOf('admin/assets/includes/footer.php');
+include pathOf('admin/assets/includes/footer.php');
 
-    ?>
+?>
