@@ -37,7 +37,7 @@
                     <label class="input-label">Password</label>
                 </div>
                 <div class="action">
-                    <button type="submit" class="action-button">Get Started</button>
+                    <button type="submit" class="action-button" onclick="registerUser()">Get Started</button>
                 </div>
             </form>
             <div class="card-info">
@@ -49,15 +49,16 @@
 </body>
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#registerForm").submit(function(event){
+        
+            function registerUser(event){
+
                 event.preventDefault(); // Prevent the form from submitting normally
 
                 let data = {
                     name: $("#name").val(),
                     email: $("#email").val(),
                     password: $("#password").val(),
-                };
+                }
 
                 $.ajax({
                     url: "../api/user/registerUser.php",
@@ -75,7 +76,8 @@
                         console.log(error);
                     }
                 });
-            });
-        });
+            }
+            
+            $("#registerForm").on("submit", registerUser);
     </script>
 </html>
