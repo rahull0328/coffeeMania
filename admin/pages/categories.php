@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION['admin_id'])){
+    header("Location: ./login.php");
+}
 
 require "../../assets/includes/config.php";
 include pathOf('admin/assets/includes/sidebar.php');
@@ -7,6 +10,7 @@ include pathOf('admin/assets/includes/header.php');
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($con, $sql);
 $data = mysqli_fetch_all($result);
+
 ?>
 
 <div class="container-fluid">
