@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+  header("Location: ./pages/login.php");
+  exit;
+}
 
 require "../assets/includes/config.php";
 include pathOf('admin/assets/includes/sidebar.php');
@@ -8,7 +13,7 @@ include pathOf('admin/assets/includes/header.php');
 
 <div class="container-fluid">
   <!--  Row 1 -->
-  <div class="row"> 
+  <div class="row">
     <div class="col-lg-12 d-flex align-items-stretch">
       <div class="card w-100">
         <div class="card-body p-4">
@@ -122,11 +127,11 @@ include pathOf('admin/assets/includes/header.php');
       </div>
     </div>
   </div>
-  
-  
 
-<?php
 
-include pathOf('admin/assets/includes/footer.php');
 
-?>
+  <?php
+
+  include pathOf('admin/assets/includes/footer.php');
+
+  ?>

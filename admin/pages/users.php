@@ -7,6 +7,10 @@ include pathOf('admin/assets/includes/header.php');
 $sql = "SELECT * FROM customers";
 $result = mysqli_query($con, $sql);
 $data = mysqli_fetch_all($result);
+
+if(!isset($_SESSION['admin_id'])){
+    header("Location: ./pages/login.php");
+}
 ?>
 
 <div class="container-fluid">
