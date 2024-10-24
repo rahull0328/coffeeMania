@@ -9,6 +9,10 @@ $categoryList = "SELECT * FROM categories";
 $result = mysqli_query($con, $categoryList);
 $data = mysqli_fetch_all($result);
 
+$productList = "SELECT products.name, products.price, products.description, products.image, categories.cat_name AS categoryName FROM products INNER JOIN categories ON categories.id = products.id";
+$response = mysqli_query($con, $productList);
+$productData = mysqli_fetch_all($response);
+
 ?>
 
 <div class="container-fluid">
@@ -26,34 +30,52 @@ $data = mysqli_fetch_all($result);
                         </h5>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle">
+                        <table class="table text-nowrap mb-0 align-middle bg-dark">
                             <thead class="text-dark fs-4 align-middle">
                                 <tr>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">No.</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Sr No.</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Name</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Name</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Description</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Description</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Price</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Price</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Image</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Image</h6>
                                     </th>
                                     <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Category Name</h6>
-                                    </th>
-                                    <th class="border-bottom-0 align-middle">
-                                        <h6 class="fw-semibold mb-0 align-middle">Update</h6>
+                                        <h6 class="fw-semibold mb-0 align-middle text-white">Category</h6>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                <?php for ($i = 0; $i < count($productData); $i++) { ?>
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0 text-white"><?= $i + 1 ?></h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1 text-white"><?= $productData[$i][0] ?></h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1 text-white"><?= $productData[$i][2] ?></h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1 text-white"><?= $productData[$i][1] ?></h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <img src="<?= urlOf('admin//assets/uploads/') . $productData[$i][3] ?>" class="card-img-top" style="border-radius: 50%;height: 70px;width: 70px;object-fit: cover;object-position: center" alt="<?= $data[$i][3] ?>">
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1 text-white"><?= $productData[$i][4] ?></h6>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -82,8 +104,8 @@ $data = mysqli_fetch_all($result);
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label mb-3">Select Category : </label>
                         <select class="form-select" name="category" id="category">
-                            <?php for($i = 0; $i < count($data); $i++){ ?>
-                            <option value="<?= $data[$i][0] ?>"><?= $data[$i][1] ?></option>
+                            <?php for ($i = 0; $i < count($data); $i++) { ?>
+                                <option value="<?= $data[$i][0] ?>"><?= $data[$i][1] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -97,40 +119,16 @@ $data = mysqli_fetch_all($result);
         </form>
     </dialog>
 
-    <!-- Update Modal -->
-    <dialog id="updateRequestModal" style="top: 50%;left: 50%;border:0px;border-radius:10px; height: 50%;width: 30%;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);">
-        <form method="POST">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label mb-3">Update Status : </label>
-                        <input type="text" class="form-control" name="updateStatus" id="status">
-                        <input type="hidden" name="updateId" id="id">
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
-                </div>
-            </div>
-        </form>
-    </dialog>
-
     <script src="../../assets/js/jquery-3.6.0.min.js"></script>
     <script>
-
         function showInsertModal() {
             insertTableModal.showModal();
         }
 
-        function showUpdateModal(id, tableNumber, status) {
-            updateTableModal.showModal();
-            $("#id").val(id);
-            $("#tableNumber").val(tableNumber);
-            $("#status").val(status);
-        }
-
         //inserting data
-        function insertProduct(event){
+        function insertProduct(event) {
             event.preventDefault();
-            
+
             //handling images
             var fileInput = document.getElementById('image');
             var file = fileInput.files[0];
@@ -149,23 +147,23 @@ $data = mysqli_fetch_all($result);
                 data: formData,
                 contentType: false,
                 processData: false,
-                success: function(response){
-                    if(response.success){
+                success: function(response) {
+                    if (response.success) {
                         alert("Product Added !");
                         window.location.reload();
                     } else {
                         alert("Error: " + response.message);
                     }
                 },
-                error: function(error){
+                error: function(error) {
                     console.log(error);
                     alert("Error: Unable to insert product.");
                 }
             })
         }
-        $("#insertForm").on("submit", insertProduct); 
+        $("#insertForm").on("submit", insertProduct);
     </script>
 
-    <?php 
-        include pathOf('admin/assets/includes/footer.php'); 
+    <?php
+    include pathOf('admin/assets/includes/footer.php');
     ?>

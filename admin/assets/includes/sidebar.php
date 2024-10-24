@@ -33,7 +33,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= urlOf('admin/') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -61,27 +61,19 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= urlOf('admin/pages/users.php') ?>" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-cards"></i>
+                                    <i class="ti ti-user"></i>
                                 </span>
-                                <span class="hide-menu">Card</span>
+                                <span class="hide-menu">Users</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= urlOf('admin/pages/orders.php') ?>" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-file-description"></i>
+                                    <i class="ti ti-shopping-cart"></i>
                                 </span>
-                                <span class="hide-menu">Forms</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-typography"></i>
-                                </span>
-                                <span class="hide-menu">Typography</span>
+                                <span class="hide-menu">Orders</span>
                             </a>
                         </li>
                     </ul>

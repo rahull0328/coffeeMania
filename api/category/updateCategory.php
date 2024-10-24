@@ -6,9 +6,9 @@ require '../../assets/includes/config.php';
 
 header('Content-Type: application/json');
 
-$catName = $_POST['updateCategoryName'];
+$catName = $_POST['updateName'];
 
-$id = $_POST['updateId'];
+$id = $_POST['id'];
 
 $query = "UPDATE `categories` SET `cat_name` = '$catName' WHERE `id`= $id";
 $result = mysqli_query($con, $query);
@@ -20,7 +20,5 @@ $result = [
 
 // Return the response as JSON
 echo json_encode($result);
-
-header("Location: ../../admin/pages/categories.php");
 
 mysqli_close($con);
