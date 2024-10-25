@@ -40,7 +40,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="<?= urlOf('index.php') ?>" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="<?= urlOf('pages/menu.php') ?>" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="<?= urlOf('pages/services.php') ?>" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="<?= urlOf('pages/about.php') ?>" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Profile</a></li>
