@@ -80,7 +80,10 @@
 					<h3 class="mb-5 heading-pricing ftco-animate">Pizza's</h3>
 					<?php for ($i = 0; $i < count($pizzaData); $i++){ ?>
 					<div class="pricing-entry d-flex ftco-animate">
-						<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $pizzaData[$i][4] ?>);"></div>
+						<a href="./product-single.php?id=<?= $pizzaData[$i][0] ?>">
+							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $pizzaData[$i][4] ?>);">
+							</div>
+						</a>
 						<div class="desc pl-3">
 							<div class="d-flex text align-items-center">
 								<h3><span><?= $pizzaData[$i][1] ?></span></h3>
@@ -99,7 +102,10 @@
 					<?php for ($i = 0; $i < count($burgerData); $i++) {
 					?>
 					<div class="pricing-entry d-flex ftco-animate">
-						<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $burgerData[$i][4] ?>);"></div>
+						<a href="./product-single.php?id=<?= $burgerData[$i][0] ?>">
+							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $burgerData[$i][4] ?>);">
+							</div>
+						</a>
 						<div class="desc pl-3">
 							<div class="d-flex text align-items-center">
 								<h3><span><?= $burgerData[$i][1] ?></span></h3>
@@ -117,7 +123,10 @@
 					<h3 class="mb-5 heading-pricing ftco-animate">Desserts</h3>
 					<?php for ($i = 0; $i < count($dessertData); $i++) { ?>
 					<div class="pricing-entry d-flex ftco-animate">
-						<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $dessertData[$i][4] ?>);"></div>
+						<a href="./product-single.php?id=<?= $dessertData[$i][0] ?>">
+							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $dessertData[$i][4] ?>);">
+							</div>
+						</a>
 						<div class="desc pl-3">
 							<div class="d-flex text align-items-center">
 								<h3><span><?= $dessertData[$i][1] ?></span></h3>
@@ -137,7 +146,10 @@
 						{
 					?>
 						<div class="pricing-entry d-flex ftco-animate">
-							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $friesData[$i][4] ?>);"></div>
+							<a href="./product-single.php?id=<?= $friesData[$i][0] ?>">
+								<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $friesData[$i][4] ?>);">
+								</div>
+							</a>
 							<div class="desc pl-3">
 								<div class="d-flex text align-items-center">
 									<h3><span><?= $friesData[$i][1] ?></span></h3>
