@@ -42,7 +42,7 @@
 	          <li class="nav-item"><a href="<?= urlOf('pages/menu.php') ?>" class="nav-link">Menu</a></li>
 	          <li class="nav-item"><a href="<?= urlOf('pages/services.php') ?>" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="<?= urlOf('pages/about.php') ?>" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="<?= urlOf('pages/contact.php') ?>" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Profile</a></li>
             <li class="nav-item"><a href="<?= urlOf('pages/register.php') ?>" class="nav-link">Login</a></li>
 	          <li class="nav-item cart"><a href="<?= urlOf('pages/cart.php') ?>" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
