@@ -8,6 +8,7 @@ if (!isset($_SESSION['admin_id'])) {
 require "../assets/includes/config.php";
 include pathOf('admin/assets/includes/sidebar.php');
 include pathOf('admin/assets/includes/header.php');
+$id = $_SESSION['admin_id'];
 
 ?>
 

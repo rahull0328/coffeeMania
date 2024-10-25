@@ -21,13 +21,13 @@ require '../../assets/includes/config.php';
                     <small>Welcome Back</small>
                 </h2>
             </div>
-            <form method="GET" class="card-form" id="loginForm">
+            <form method="POST" action="<?= urlOf('api/admin/adminLogin.php') ?>" class="card-form" id="loginForm">
                 <div class="input">
-                    <input type="text" class="input-field" autofocus name="adminName" id="username" required />
+                    <input type="text" class="input-field" autofocus id="name" name="username" required />
                     <label class="input-label">Username</label>
                 </div>
                 <div class="input">
-                    <input type="password" class="input-field" name="adminPassword" id="password" required />
+                    <input type="password" class="input-field" id="password" name="password" required />
                     <label class="input-label">Password</label>
                 </div>
                 <div class="action">
@@ -38,42 +38,5 @@ require '../../assets/includes/config.php';
     </div>
 
 </body>
-<script src="../../assets/js/jquery-3.6.0.min.js"></script>
-<script>
-    //ajax call for admin login
-    function adminLogin(event) {
-
-        event.preventDefault();
-
-        let data = {
-            username: $('#username').val(),
-            password: $('#password').val(),
-        }
-
-        console.log(data);
-
-        $.ajax({
-            url: "../../api/admin/adminLogin.php",
-            method: "GET",
-            data: data,
-            dataType: "json",
-            success: function(response) {
-                if (response.success) {
-                    console.log(response);
-                    alert("Welcome !");
-                    window.location.href = '../index.php';
-                } else {
-                    alert("Error :" + response.message);
-                }
-            },
-            error: function(error) {
-                console.log(error);
-                alert(error.message);
-            }
-        })
-    }
-
-    $("#loginForm").on("submit", adminLogin);
-</script>
 
 </html>
