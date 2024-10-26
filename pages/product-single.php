@@ -39,21 +39,23 @@ $data = mysqli_fetch_all($result);
 					<h3><?= $data[$i][1] ?></h3>
 					<p class="price"><span>₹&nbsp;<?= $data[$i][2] ?></span></p>
 					<p><?= $data[$i][3] ?></p>
-					<div class="row mt-4">
-						<div class="w-100"></div>
-						<div class="input-group col-md-6 d-flex mb-3">
-							<span class="input-group-btn mr-2">
-								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-									<i class="icon-minus"></i>
-								</button>
-							</span>
-							<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-							<span class="input-group-btn ml-2">
-								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-									<i class="icon-plus"></i>
-								</button>
-							</span>
-						</div>
+					<form method="post" id="addQuantityForm">
+						<div class="row mt-4">
+							<div class="w-100"></div>
+							<div class="input-group col-md-6 d-flex mb-3">
+								<span class="input-group-btn mr-2">
+									<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+										<i class="icon-minus"></i>
+									</button>
+								</span>
+								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+								<span class="input-group-btn ml-2">
+									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+										<i class="icon-plus"></i>
+									</button>
+								</span>
+							</div>
+					</form>
 						<?php } ?>
 					</div>
 					<p><a href="./cart.php" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
@@ -120,7 +122,7 @@ $data = mysqli_fetch_all($result);
 	</div>
 </section>
 
-
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function() {
 
