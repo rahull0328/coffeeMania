@@ -110,7 +110,7 @@ include pathOf('assets/includes/header.php');
 						<span>$17.60</span>
 					</p>
 				</div>
-				<p class="text-center"><a href="<?= urlOf('pages/checkout.php') ?>" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+				<p class="text-center"><a href="" class="btn btn-primary py-3 px-4">Place Order</a></p>
 			</div>
 		</div>
 	</div>
