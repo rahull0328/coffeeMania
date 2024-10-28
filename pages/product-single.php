@@ -48,6 +48,7 @@ $data = mysqli_fetch_all($result);
 										<i class="icon-minus"></i>
 									</button>
 								</span>
+								<input type="hidden" value="<?= $id ?>" name="productId" id="productId">
 								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
 								<span class="input-group-btn ml-2">
 									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
@@ -58,7 +59,7 @@ $data = mysqli_fetch_all($result);
 					</form>
 						<?php } ?>
 					</div>
-					<p><a href="./cart.php" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+					<p><a href="<?= urlOf('pages/cart.php') ?>" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
 				</div>
 		</div>
 	</div>
@@ -158,6 +159,35 @@ $data = mysqli_fetch_all($result);
 		});
 
 	});
+
+	//ajax call for adding product into cart
+	function addToCart(event) {
+		event.preventDefault();
+
+		let data = {
+			quantitiy: $('#quantity').val(),
+			productId: $('#productId').val(),
+		}
+
+		$.ajax({
+			url: "../api/cart/addToCart.php",
+			method: 'POST',
+			data: data,
+			success: function(response){
+				if(response.success == true){
+					alert("Product added to cart successfully!");
+					window.location.href = "./cart.php";
+				} else {
+					alert("Failed Adding Product to cart!");
+				}
+			},
+			error: function(error){
+				alert("Error :" + error.message);
+			}
+		});
+	}
+
+	$("#addQuantityForm").on("submit", addToCart);
 </script>
 
 <?php
