@@ -3,6 +3,10 @@
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
+$sql = "SELECT products.name, products.price, products.description, products.image, products.id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.id = cart.cart_id";
+$result = mysqli_query($con, $sql);
+$cartData = mysqli_fetch_all($result);
+
 ?>
 <section class="home-slider owl-carousel">
 
@@ -29,61 +33,50 @@ include pathOf('assets/includes/header.php');
 					<table class="table">
 						<thead class="thead-primary">
 							<tr class="text-center">
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>Product</th>
+								<th colspan="3">Product</th>
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Total</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr class="text-center">
-								<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
+						<?php for ($i = 0; $i < count($cartData); $i++) {
+							print_r($cartData);
+						?>
+							<tbody>
+								<tr class="text-center">
+									<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
 
-								<td class="image-prod">
-									<div class="img" style="background-image:url(<?= urlOf('assets/images/menu-2.jpg') ?>);"></div>
-								</td>
+									<td class="image-prod">
+										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][5] ?>);"></div>
+									</td>
 
-								<td class="product-name">
-									<h3>Creamy Latte Coffee</h3>
-									<p>Far far away, behind the word mountains, far from the countries</p>
-								</td>
+									<td class="product-name">
+										<h3>Creamy Latte Coffee</h3>
+										<p>Far far away, behind the word mountains, far from the countries</p>
+									</td>
 
-								<td class="price">$4.90</td>
+									<td class="price">$4.90</td>
 
-								<td class="quantity">
-									<div class="input-group mb-3">
-										<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-									</div>
-								</td>
+									<td class="quantity">
+										<div class="input-group mb-3">
+											<span class="input-group-btn mr-2">
+												<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+													<i class="icon-minus"></i>
+												</button>
+											</span>
+											<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+											<span class="input-group-btn ml-2">
+												<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+													<i class="icon-plus"></i>
+												</button>
+											</span>
+										</div>
+									</td>
 
-								<td class="total">$4.90</td>
-							</tr><!-- END TR-->
-
-							<tr class="text-center">
-								<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-
-								<td class="image-prod">
-									<div class="img" style="background-image:url(<?= urlOf('assets/images/dish-2.jpg') ?>);"></div>
-								</td>
-
-								<td class="product-name">
-									<h3>Grilled Ribs Beef</h3>
-									<p>Far far away, behind the word mountains, far from the countries</p>
-								</td>
-
-								<td class="price">$15.70</td>
-
-								<td class="quantity">
-									<div class="input-group mb-3">
-										<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-									</div>
-								</td>
-
-								<td class="total">$15.70</td>
-							</tr><!-- END TR-->
-						</tbody>
+									<td class="total">$4.90</td>
+								</tr><!-- END TR-->
+							</tbody>
+						<?php } ?>
 					</table>
 				</div>
 			</div>
@@ -173,6 +166,44 @@ include pathOf('assets/includes/header.php');
 		</div>
 	</div>
 </section>
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+
+		var quantitiy = 0;
+		$('.quantity-right-plus').click(function(e) {
+
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			$('#quantity').val(quantity + 1);
+
+
+			// Increment
+
+		});
+
+		$('.quantity-left-minus').click(function(e) {
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			// Increment
+			if (quantity > 0) {
+				$('#quantity').val(quantity - 1);
+			}
+		});
+
+	});
+
+</script>
 
 <?php
 
