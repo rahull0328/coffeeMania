@@ -1,3 +1,8 @@
+<?php 
+
+require "../assets/includes/config.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +23,7 @@
                     <small>Welcome Back</small>
                 </h2>
             </div>
-            <form class="card-form" action="" method="POST">
+            <form class="card-form" method="POST" id="loginForm">
                 <div class="input">
                     <input type="text" class="input-field" autofocus name="username" required  />
                     <label class="input-label">Username</label>
@@ -28,15 +33,44 @@
                     <label class="input-label">Password</label>
                 </div>
                 <div class="action">
-                    <button class="action-button" type="submit">Get started</button>
+                    <button onclick="userLogin()" class="action-button" type="button">Get started</button>
                 </div>
             </form>
             <div class="card-info">
-                <p>Don't Have An Account ? <a href="./register.php">Create One</a></p>
+                <p>Don't Have An Account ? <a href="<?= urlOf('pages/register.php') ?>">Create One</a></p>
             </div>
         </div>
     </div>
 
 </body>
 
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script>
+    function userLogin() {
+
+        let data = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+        }
+
+        $.ajax({
+            url: "../api/user/userLogin.php",
+            method: "POST",
+            data: data,
+            success: function(response) {
+                if (response.success === true) {
+                    window.location.href = '../index.php';
+                    console.log(response);
+                } else {
+                    alert(response.message);
+                    console.log(response);
+                }
+            },
+            error: function(error) {
+                alert(error.message);
+                console.error(error);
+            }
+        })
+    }
+</script>
 </html>
