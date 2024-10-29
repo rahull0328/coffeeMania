@@ -39,7 +39,7 @@ $data = mysqli_fetch_all($result);
 					<h3><?= $data[$i][1] ?></h3>
 					<p class="price"><span>₹&nbsp;<?= $data[$i][2] ?></span></p>
 					<p><?= $data[$i][3] ?></p>
-					<form method="post" id="addQuantityForm">
+					<form method="GET" id="addQuantityForm">
 						<div class="row mt-4">
 							<div class="w-100"></div>
 							<div class="input-group col-md-6 d-flex mb-3">
@@ -48,18 +48,18 @@ $data = mysqli_fetch_all($result);
 										<i class="icon-minus"></i>
 									</button>
 								</span>
-								<input type="hidden" value="<?= $id ?>" name="productId" id="productId">
 								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+								<input type="text" value="<?= $id ?>" class="form-control input-number" name="productId" id="productId">
 								<span class="input-group-btn ml-2">
 									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 										<i class="icon-plus"></i>
 									</button>
 								</span>
 							</div>
+							<?php } ?>
+						</div>
+						<input type="submit" value="Add To Cart" class="btn btn-primary py-3 px-5">
 					</form>
-						<?php } ?>
-					</div>
-					<p><a href="<?= urlOf('pages/cart.php') ?>" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
 				</div>
 		</div>
 	</div>
@@ -77,7 +77,7 @@ $data = mysqli_fetch_all($result);
 		<div class="row">
 			<div class="col-md-3">
 				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+					<a href="#" class="img" style="background-image: url(../assets/images/menu-1.jpg);"></a>
 					<div class="text text-center pt-4">
 						<h3><a href="#">Coffee Capuccino</a></h3>
 						<p>A small river named Duden flows by their place and supplies</p>
@@ -88,7 +88,7 @@ $data = mysqli_fetch_all($result);
 			</div>
 			<div class="col-md-3">
 				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
+					<a href="#" class="img" style="background-image: url(../assets/images/menu-2.jpg);"></a>
 					<div class="text text-center pt-4">
 						<h3><a href="#">Coffee Capuccino</a></h3>
 						<p>A small river named Duden flows by their place and supplies</p>
@@ -99,7 +99,7 @@ $data = mysqli_fetch_all($result);
 			</div>
 			<div class="col-md-3">
 				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
+					<a href="#" class="img" style="background-image: url(../assets/images/menu-3.jpg);"></a>
 					<div class="text text-center pt-4">
 						<h3><a href="#">Coffee Capuccino</a></h3>
 						<p>A small river named Duden flows by their place and supplies</p>
@@ -110,7 +110,7 @@ $data = mysqli_fetch_all($result);
 			</div>
 			<div class="col-md-3">
 				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
+					<a href="#" class="img" style="background-image: url(../assets/images/menu-4.jpg);"></a>
 					<div class="text text-center pt-4">
 						<h3><a href="#">Coffee Capuccino</a></h3>
 						<p>A small river named Duden flows by their place and supplies</p>
@@ -165,26 +165,15 @@ $data = mysqli_fetch_all($result);
 		event.preventDefault();
 
 		let data = {
-			quantitiy: $('#quantity').val(),
+			quantity: $('#quantity').val(),
 			productId: $('#productId').val(),
 		}
 
-		$.ajax({
-			url: "../api/cart/addToCart.php",
-			method: 'POST',
-			data: data,
-			success: function(response){
-				if(response.success == true){
-					alert("Product added to cart successfully!");
-					window.location.href = "./cart.php";
-				} else {
-					alert("Failed Adding Product to cart!");
-				}
-			},
-			error: function(error){
-				alert("Error :" + error.message);
-			}
-		});
+		console.log(data);
+
+		$.get('../api/cart/addToCart.php', data, function(response) {
+            window.location.href = "cart.php";
+        })
 	}
 
 	$("#addQuantityForm").on("submit", addToCart);
