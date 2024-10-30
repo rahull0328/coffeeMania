@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location:./login.php");
+    exit();
+}
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 

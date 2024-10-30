@@ -59,7 +59,7 @@ require "../assets/includes/config.php";
             method: 'POST',
             success: function(response) {
                 if (response.status) {
-                    alert('Login successful!');
+                    alert('Welcome !');
                     window.location.href = '../index.php';
                     console.log(response);
                 } else {

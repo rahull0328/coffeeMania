@@ -46,7 +46,7 @@
             <?php if(!isset($_SESSION['user_id'])) { ?>
               <li class="nav-item"><a href="<?= urlOf('pages/login.php') ?>" class="nav-link">Login</a></li>
               <?php } else { ?>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Profile</a></li>
+                <li class="nav-item"><a href="<?= urlOf('pages/profile.php') ?>" class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="<?= urlOf('api/user/userLogout.php') ?>" class="nav-link">Logout</a></li>
             <?php } ?>
 	          <li class="nav-item cart"><a href="<?= urlOf('pages/cart.php') ?>" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
