@@ -23,17 +23,17 @@ require "../assets/includes/config.php";
                     <small>Welcome Back</small>
                 </h2>
             </div>
-            <form class="card-form" method="POST" id="loginForm">
+            <form class="card-form" method="POST">
                 <div class="input">
-                    <input type="text" class="input-field" autofocus name="username" required  />
+                    <input type="text" class="input-field" id="username" autofocus required  />
                     <label class="input-label">Username</label>
                 </div>
                 <div class="input">
-                    <input type="password" class="input-field" name="password" required />
+                    <input type="password" class="input-field" id="password" required />
                     <label class="input-label">Password</label>
                 </div>
                 <div class="action">
-                    <button onclick="userLogin()" class="action-button" type="button">Get started</button>
+                    <button type="button" class="action-button" onclick="userLogin()">Get Started</button>
                 </div>
             </form>
             <div class="card-info">
@@ -49,16 +49,17 @@ require "../assets/includes/config.php";
     function userLogin() {
 
         let data = {
-            username: $("#username").val(),
-            password: $("#password").val(),
+            username: $('#username').val(),
+            password: $('#password').val(),
         }
 
         $.ajax({
-            url: "../api/user/userLogin.php",
-            method: "POST",
+            url: '../api/user/userLogin.php',
             data: data,
+            method: 'POST',
             success: function(response) {
-                if (response.success === true) {
+                if (response.status) {
+                    alert('Login successful!');
                     window.location.href = '../index.php';
                     console.log(response);
                 } else {
@@ -67,7 +68,7 @@ require "../assets/includes/config.php";
                 }
             },
             error: function(error) {
-                alert(error.message);
+                alert('Error occurred during login. Please try again.');
                 console.error(error);
             }
         })
