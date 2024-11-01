@@ -155,6 +155,21 @@ $data = mysqli_fetch_all($result);
         }
     </style>
 </head>
+<!-- show insert model -->
+<dialog id="insertCategoryModal" style="top: 50%;left: 50%;border:0px;border-radius:10px;height: 50%;width: 30%;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);">
+    <form method="POST" id="insertForm">
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="" class="form-label mb-3">Category Name : </label>
+                    <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Enter Category Name : " required>
+                </div>
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</dialog>
+
 <section class="home-slider owl-carousel">
 
     <div class="slider-item" style="background-image: url(<?= urlOf('assets/images/bg_3.jpg') ?>);" data-stellar-background-ratio="0.5">
@@ -186,6 +201,11 @@ $data = mysqli_fetch_all($result);
                                     </div>
                                     <h6 class="f-w-600"><?= $data[$i][1] ?></h6>
                                     <a class="mb-0 fw-normal align-middle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="col icon icon-tabler icon-tabler-plus" onclick="showInsertModal()" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 5l0 14"></path>
+                                            <path d="M5 12l14 0"></path>
+                                        </svg>
                                     </a>
                                 </div>
                             </div>
@@ -220,7 +240,9 @@ $data = mysqli_fetch_all($result);
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-
+    function showInsertModal() {
+        insertCategoryModal.showModal();
+    }
 </script>
 <?php
 
