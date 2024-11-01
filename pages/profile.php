@@ -186,12 +186,6 @@ $data = mysqli_fetch_all($result);
                                     </div>
                                     <h6 class="f-w-600"><?= $data[$i][1] ?></h6>
                                     <a class="mb-0 fw-normal align-middle">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" onclick="showUpdateModal(<?= $data[$i][0] ?>, '<?= $data[$i][1] ?>')" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                                            <path d="M16 5l3 3"></path>
-                                        </svg>
                                     </a>
                                 </div>
                             </div>
@@ -224,28 +218,9 @@ $data = mysqli_fetch_all($result);
     </div>
 </div>
 
-    <!-- show update model -->
-    <dialog id="updateProfileModal" style="top: 50%;left: 30%;border:0px;border-radius:10px; height: 50%;width: 30%;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);">
-        <form method="POST" id="updateForm">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label mb-3">Update Category Name : </label>
-                        <input type="text" class="form-control" name="updateCategoryName" id="updateName">
-                        <input type="hidden" class="form-control" name="updateId" id="id">
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="update">Submit</button>
-                </div>
-            </div>
-        </form>
-    </dialog>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-    function showUpdateModal(id, categoryName) {
-        updateCategoryModal.showModal();
-        $("#id").val(id);
-        $("#updateName").val(categoryName);
-    }
+
 </script>
 <?php
 
