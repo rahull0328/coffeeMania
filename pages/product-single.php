@@ -7,8 +7,9 @@ if (!isset($_SESSION['user_id'])) {
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
-$id = $_GET['id'];
-$sql = "SELECT * FROM `products` WHERE `id` = '$id'";
+$id = $_GET['prod_id'];
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM `products` WHERE `prod_id` = '$id'";
 $result = mysqli_query($con, $sql);
 $data = mysqli_fetch_all($result);
 
@@ -54,6 +55,7 @@ $data = mysqli_fetch_all($result);
 								</span>
 								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
 								<input type="hidden" value="<?= $id ?>" class="form-control input-number" name="productId" id="productId">
+								<input type="text" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
 								<span class="input-group-btn ml-2">
 									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 										<i class="icon-plus"></i>
@@ -171,13 +173,14 @@ $data = mysqli_fetch_all($result);
 		let data = {
 			quantity: $('#quantity').val(),
 			productId: $('#productId').val(),
+			userId: $('#userId').val(),
 		}
 
 		console.log(data);
 
 		$.get('../api/cart/addToCart.php', data, function(response) {
             window.location.href = "cart.php";
-        })
+        });
 	}
 
 	$("#addQuantityForm").on("submit", addToCart);

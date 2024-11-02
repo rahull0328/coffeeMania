@@ -3,7 +3,7 @@
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
-$sql = "SELECT products.name, products.price, products.description, products.image, products.id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.id = cart.cart_id";
+$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.prod_id = cart.cart_id";
 $result = mysqli_query($con, $sql);
 $cartData = mysqli_fetch_all($result);
 
@@ -47,7 +47,7 @@ $cartData = mysqli_fetch_all($result);
 									<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
 
 									<td class="image-prod">
-										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][5] ?>);"></div>
+										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][1] ?>);"></div>
 									</td>
 
 									<td class="product-name">
