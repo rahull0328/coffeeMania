@@ -6,7 +6,7 @@
     $username = $_POST['username'] ?? null;
     $password = $_POST['password'] ?? null;
 
-    $stmt = $con->prepare("SELECT `id`, `username`, `password` FROM `customers` WHERE `username` = ?");
+    $stmt = $con->prepare("SELECT `user_id`, `username`, `password` FROM `customers` WHERE `username` = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
