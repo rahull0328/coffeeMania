@@ -1,9 +1,15 @@
 <?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+	header("Location:./login.php");
+    exit();
+}
 
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
-$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.prod_id = cart.cart_id";
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
 $result = mysqli_query($con, $sql);
 $cartData = mysqli_fetch_all($result);
 
@@ -39,23 +45,23 @@ $cartData = mysqli_fetch_all($result);
 								<th>Total</th>
 							</tr>
 						</thead>
-						<?php for ($i = 0; $i < count($cartData); $i++) {
-							print_r($cartData);
+						<?php for ($i = 0; $i < count($cartData); $i++) 
+						{
 						?>
 							<tbody>
 								<tr class="text-center">
 									<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
 
 									<td class="image-prod">
-										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][1] ?>);"></div>
+										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][3] ?>);"></div>
 									</td>
 
 									<td class="product-name">
-										<h3>Creamy Latte Coffee</h3>
-										<p>Far far away, behind the word mountains, far from the countries</p>
+										<h3><?= $cartData[$i][0] ?></h3>
+										<p><?= $cartData[$i][2] ?></p>
 									</td>
 
-									<td class="price">$4.90</td>
+									<td class="price"><?= $cartData[$i][1] ?></td>
 
 									<td class="quantity">
 										<div class="input-group mb-3">
@@ -64,7 +70,7 @@ $cartData = mysqli_fetch_all($result);
 													<i class="icon-minus"></i>
 												</button>
 											</span>
-											<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+											<input type="text" name="quantity" class="quantity form-control input-number" value="<?= $cartData[$i][5] ?>" min="1" max="100">
 											<span class="input-group-btn ml-2">
 												<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 													<i class="icon-plus"></i>
