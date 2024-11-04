@@ -9,7 +9,7 @@ require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
 $id = $_SESSION['user_id'];
-$sql = "SELECT * FROM `customers` WHERE `id` = '$id'";
+$sql = "SELECT * FROM `customers` WHERE `user_id` = '$id'";
 $result = mysqli_query($con, $sql);
 $data = mysqli_fetch_all($result);
 

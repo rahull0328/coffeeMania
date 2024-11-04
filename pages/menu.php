@@ -1,5 +1,5 @@
 <?php 
-
+	session_start();
 	require "../assets/includes/config.php";
 	include pathOf('assets/includes/header.php');
 
@@ -85,7 +85,7 @@
 					<h3 class="mb-5 heading-pricing ftco-animate">Pizza's</h3>
 					<?php for ($i = 0; $i < count($pizzaData); $i++){ ?>
 					<div class="pricing-entry d-flex ftco-animate">
-						<a href="./product-single.php?prod_id=<?= $pizzaData[$i][0] ?>">
+						<a href="./product-single.php?id=<?= $pizzaData[$i][0] ?>">
 							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $pizzaData[$i][4] ?>);">
 							</div>
 						</a>
@@ -106,7 +106,7 @@
 					<h3 class="mb-5 heading-pricing ftco-animate">Coffee's</h3>
 					<?php for ($i = 0; $i < count($coffeeData); $i++){ ?>
 					<div class="pricing-entry d-flex ftco-animate">
-						<a href="./product-single.php?prod_id=<?= $coffeeData[$i][0] ?>">
+						<a href="./product-single.php?id=<?= $coffeeData[$i][0] ?>">
 							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $coffeeData[$i][4] ?>);">
 							</div>
 						</a>

@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION['user_id'])){
+if (!isset($_SESSION['user_id'])) {
 	header("Location:./login.php");
-    exit();
+	exit();
 }
 
 require "../assets/includes/config.php";
@@ -45,8 +45,7 @@ $cartData = mysqli_fetch_all($result);
 								<th>Total</th>
 							</tr>
 						</thead>
-						<?php for ($i = 0; $i < count($cartData); $i++) 
-						{
+						<?php for ($i = 0; $i < count($cartData); $i++) {
 						?>
 							<tbody>
 								<tr class="text-center">
@@ -61,7 +60,7 @@ $cartData = mysqli_fetch_all($result);
 										<p><?= $cartData[$i][2] ?></p>
 									</td>
 
-									<td class="price"><?= $cartData[$i][1] ?></td>
+									<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
 
 									<td class="quantity">
 										<div class="input-group mb-3">
@@ -176,7 +175,7 @@ $cartData = mysqli_fetch_all($result);
 <script>
 	$(document).ready(function() {
 
-		var quantitiy = 0;
+		var quantitiy = 1;
 		$('.quantity-right-plus').click(function(e) {
 
 			// Stop acting like a button
@@ -208,7 +207,6 @@ $cartData = mysqli_fetch_all($result);
 		});
 
 	});
-
 </script>
 
 <?php
