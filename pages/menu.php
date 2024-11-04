@@ -23,6 +23,11 @@
 	$dessertResult = mysqli_query($con, $dessertList);
 	$dessertData = mysqli_fetch_all($dessertResult);
 
+	//sql query for displaying coffee
+	$coffeeList = "SELECT * FROM `products` WHERE `cat_id` = 5";
+	$coffeeResult = mysqli_query($con, $coffeeList);
+	$coffeeData = mysqli_fetch_all($coffeeResult);
+
 ?>
     <section class="home-slider owl-carousel">
 
@@ -91,6 +96,27 @@
 							</div>
 							<div class="d-block">
 								<p><?= $pizzaData[$i][3] ?></p>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+
+				<div class="col-md-6 mb-5 pb-3">
+					<h3 class="mb-5 heading-pricing ftco-animate">Coffee's</h3>
+					<?php for ($i = 0; $i < count($coffeeData); $i++){ ?>
+					<div class="pricing-entry d-flex ftco-animate">
+						<a href="./product-single.php?prod_id=<?= $coffeeData[$i][0] ?>">
+							<div class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/') . $coffeeData[$i][4] ?>);">
+							</div>
+						</a>
+						<div class="desc pl-3">
+							<div class="d-flex text align-items-center">
+								<h3><span><?= $coffeeData[$i][1] ?></span></h3>
+								<span class="price">₹&nbsp;<?= $coffeeData[$i][2] ?></span>
+							</div>
+							<div class="d-block">
+								<p><?= $coffeeData[$i][3] ?></p>
 							</div>
 						</div>
 					</div>
