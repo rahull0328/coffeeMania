@@ -14,7 +14,7 @@
     if ($row = $result->fetch_assoc()) {
         if (password_verify($password, $row['password'])) {
             session_start();
-            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['username'] = $row['username'];
             
             echo json_encode(["status" => true, "message" => "Login successful! Welcome, " . $username]);
@@ -22,7 +22,7 @@
             echo json_encode(["status" => false, "message" => "Invalid username or password."]);
         }
     } else {
-        echo json_encode(["status" => false, "message" => "Invalid username or password."]);
+        echo json_encode(["status" => false, "message" => "Error Establishing Connection."]);
     }
 
     $stmt->close();
