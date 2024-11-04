@@ -13,7 +13,7 @@ $categoryList = "SELECT * FROM categories";
 $result = mysqli_query($con, $categoryList);
 $data = mysqli_fetch_all($result);
 
-$productList = "SELECT products.name, products.price, products.description, products.image, categories.cat_name AS categoryName FROM products INNER JOIN categories ON categories.id = products.id";
+$productList = "SELECT products.name, products.price, products.description, products.image, categories.cat_name AS categoryName FROM products INNER JOIN categories ON categories.id = products.prod_id";
 $response = mysqli_query($con, $productList);
 $productData = mysqli_fetch_all($response);
 
