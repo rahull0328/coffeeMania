@@ -8,8 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
+$id = $_POST['id'];
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
+$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
 $result = mysqli_query($con, $sql);
 $cartData = mysqli_fetch_all($result);
 
@@ -40,12 +41,14 @@ $cartData = mysqli_fetch_all($result);
 						<thead class="thead-primary">
 							<tr class="text-center">
 								<th>Action</th>
-								<th colspan="3">Product</th>
+								<th colspan="2">Product</th>
 								<th>Price</th>
-								<th></th>
+								<th>Quantity</th>
+								<th>Total</th>
 							</tr>
 						</thead>
 						<?php for ($i = 0; $i < count($cartData); $i++) {
+							print_r($cartData);
 						?>
 							<tbody>
 								<form method="post">
@@ -61,15 +64,12 @@ $cartData = mysqli_fetch_all($result);
 											<p><?= $cartData[$i][2] ?></p>
 										</td>
 
-										<td>
-
-										</td>
-										
 										<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
 	
 										<td class="quantity">
 											<div class="input-group mb-3">
-												<input type="hidden" value="<?= $id ?>" class="form-control input-number" name="productId" id="productId">
+												<input type="text" id="quantity" name="quantity" class="form-control input-number" value="<?= $cartData[$i][5] ?>" min="1" max="100">
+												<input type="hidden" name="productId" id="productId" value="<?= $cartData[$i][4] ?>" class="form-control input-number">
 												<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
 											</div>
 										</td>
