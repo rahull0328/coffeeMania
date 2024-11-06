@@ -9,7 +9,7 @@ require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
+$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
 $result = mysqli_query($con, $sql);
 $cartData = mysqli_fetch_all($result);
 
@@ -39,47 +39,43 @@ $cartData = mysqli_fetch_all($result);
 					<table class="table">
 						<thead class="thead-primary">
 							<tr class="text-center">
+								<th>Action</th>
 								<th colspan="3">Product</th>
 								<th>Price</th>
-								<th>Quantity</th>
-								<th>Total</th>
+								<th></th>
 							</tr>
 						</thead>
 						<?php for ($i = 0; $i < count($cartData); $i++) {
 						?>
 							<tbody>
-								<tr class="text-center">
-									<td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
+								<form method="post">
+									<tr class="text-center">
+										<td class="product-remove"><a href="<?= urlOf('api/cart/removeProduct.php') ?>"><span class="icon-close"></span></a></td>
+	
+										<td class="image-prod">
+											<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][3] ?>);"></div>
+										</td>
+	
+										<td class="product-name">
+											<h3><?= $cartData[$i][0] ?></h3>
+											<p><?= $cartData[$i][2] ?></p>
+										</td>
 
-									<td class="image-prod">
-										<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][3] ?>);"></div>
-									</td>
+										<td>
 
-									<td class="product-name">
-										<h3><?= $cartData[$i][0] ?></h3>
-										<p><?= $cartData[$i][2] ?></p>
-									</td>
-
-									<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
-
-									<td class="quantity">
-										<div class="input-group mb-3">
-											<span class="input-group-btn mr-2">
-												<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-													<i class="icon-minus"></i>
-												</button>
-											</span>
-											<input type="text" name="quantity" class="quantity form-control input-number" value="<?= $cartData[$i][5] ?>" min="1" max="100">
-											<span class="input-group-btn ml-2">
-												<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-													<i class="icon-plus"></i>
-												</button>
-											</span>
-										</div>
-									</td>
-
-									<td class="total">$4.90</td>
-								</tr><!-- END TR-->
+										</td>
+										
+										<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
+	
+										<td class="quantity">
+											<div class="input-group mb-3">
+												<input type="hidden" value="<?= $id ?>" class="form-control input-number" name="productId" id="productId">
+												<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
+											</div>
+										</td>
+	
+									</tr><!-- END TR-->
+								</form>
 							</tbody>
 						<?php } ?>
 					</table>
@@ -175,7 +171,7 @@ $cartData = mysqli_fetch_all($result);
 <script>
 	$(document).ready(function() {
 
-		var quantitiy = 1;
+		var quantitiy = 0;
 		$('.quantity-right-plus').click(function(e) {
 
 			// Stop acting like a button
