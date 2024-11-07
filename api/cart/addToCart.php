@@ -7,8 +7,9 @@
     $quantity = $_GET['quantity'];
     $productId = $_GET['productId'];
     $userId = $_GET['userId'];
+    $cart_amt = $_GET['price'];
 
-    $query = "INSERT INTO `cart`(`qty`, `prod_id`, `user_id`) VALUES('$quantity', '$productId', '$userId')";
+    $query = "INSERT INTO `cart`(`qty`, `cart_amt`, `prod_id`, `user_id`) VALUES('$quantity', '$cart_amt', '$productId', '$userId')";
     mysqli_query($con, $query);
 
     header("Location: ../../pages/cart.php");
