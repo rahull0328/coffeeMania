@@ -8,9 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 require "../assets/includes/config.php";
 include pathOf('assets/includes/header.php');
 
-$id = $_POST['id'];
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.qty AS cartQty FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
+$sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.cart_amt AS cartAmt, cart.qty AS cartQty, cart.cart_id AS cartId FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";
 $result = mysqli_query($con, $sql);
 $cartData = mysqli_fetch_all($result);
 
@@ -51,29 +50,34 @@ $cartData = mysqli_fetch_all($result);
 							print_r($cartData);
 						?>
 							<tbody>
-								<form method="post">
+								<form method="get">
 									<tr class="text-center">
 										<td class="product-remove"><a href="<?= urlOf('api/cart/removeProduct.php') ?>"><span class="icon-close"></span></a></td>
-	
+
 										<td class="image-prod">
 											<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][3] ?>);"></div>
 										</td>
-	
+
 										<td class="product-name">
 											<h3><?= $cartData[$i][0] ?></h3>
 											<p><?= $cartData[$i][2] ?></p>
 										</td>
 
 										<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
-	
+
 										<td class="quantity">
 											<div class="input-group mb-3">
-												<input type="text" id="quantity" name="quantity" class="form-control input-number" value="<?= $cartData[$i][5] ?>" min="1" max="100">
+												<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" max="100">
+												<input type="hidden" id="price" name="price" class="form-control input-number" value="<?= $cartData[$i][1] ?>" />
+												<input type="hidden" id="updatedprice" name="updatedprice" class="form-cotnrol input-number" value="<?= $cartData[$i][1] ?>" />
 												<input type="hidden" name="productId" id="productId" value="<?= $cartData[$i][4] ?>" class="form-control input-number">
 												<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
+												<input type="hidden" value="<?= $cartData[$i][7] ?>" class="form-control input-number" name="cartId" id="cartId">
 											</div>
 										</td>
-	
+
+										<td class="price" id="totalPrice">₹&nbsp;</td>
+
 									</tr><!-- END TR-->
 								</form>
 							</tbody>
@@ -83,126 +87,47 @@ $cartData = mysqli_fetch_all($result);
 			</div>
 		</div>
 		<div class="row justify-content-end">
-			<div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
-				<div class="cart-total mb-3">
-					<h3>Cart Totals</h3>
-					<p class="d-flex">
-						<span>Subtotal</span>
-						<span>$20.60</span>
-					</p>
-					<p class="d-flex">
-						<span>Delivery</span>
-						<span>$0.00</span>
-					</p>
-					<p class="d-flex">
-						<span>Discount</span>
-						<span>$3.00</span>
-					</p>
-					<hr>
-					<p class="d-flex total-price">
-						<span>Total</span>
-						<span>$17.60</span>
-					</p>
-				</div>
+			<div class="col col-lg-12 col-md-12 mt-5 cart-wrap ftco-animate">
 				<p class="text-center"><a href="" class="btn btn-primary py-3 px-4">Place Order</a></p>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section ftco-animate text-center">
-				<span class="subheading">Discover</span>
-				<h2 class="mb-4">Related products</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-1.jpg') ?>);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-2.jpg') ?>);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-3.jpg') ?>);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-4.jpg') ?>);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(function() {
+	$(init)
 
-		var quantitiy = 0;
-		$('.quantity-right-plus').click(function(e) {
+	function init() {
+		updateTotalPrice();
+	}
 
-			// Stop acting like a button
-			e.preventDefault();
-			// Get the field name
-			var quantity = parseInt($('#quantity').val());
+	function calcPrice() {
+		var price = $("#price").val();
+		var quantity = $("#quantity").val();
+		var totalPrice = parseInt(price) * parseInt(quantity);
+		$("#updatedprice").text(totalPrice);
+		updateTotalPrice();
+		let data = {
+			totalPrice: $('#totalPrice').val(),
+			quantity: $("#quantity").val(),
+			cartId: $("#cartId").val(),
+			productId: $("#productId").val(),
+			userId: $("#userId").val(),
+		}
+		console.log(data);
+		$.get("../api/cart/updateCart.php", data, function(response) {
+			window.location.reload();
+		})
+	}
 
-			// If is not undefined
-
-			$('#quantity').val(quantity + 1);
-
-
-			// Increment
-
-		});
-
-		$('.quantity-left-minus').click(function(e) {
-			// Stop acting like a button
-			e.preventDefault();
-			// Get the field name
-			var quantity = parseInt($('#quantity').val());
-
-			// If is not undefined
-
-			// Increment
-			if (quantity > 0) {
-				$('#quantity').val(quantity - 1);
-			}
-		});
-
-	});
+	function updateTotalPrice() {
+		let totalPrice = $("#updatedprice").text();
+		let mainTotal = 0;
+		mainTotal += parseInt(totalPrice);
+		console.log(mainTotal);
+		$("#totalPrice").text(mainTotal);
+	}
 </script>
 
 <?php
