@@ -55,10 +55,10 @@ $cartData = mysqli_fetch_all($result);
 							<tbody>
 								<form method="get">
 									<tr class="text-center">
-										<td class="product-remove"><a href="<?= urlOf('api/cart/removeProduct.php') ?>"><span class="icon-close"></span></a></td>
+										<td class="product-remove"><a href="../api/cart/remove.php?cartId=<?= $cartData[$i][7] ?>"><span class="icon-close"></span></a></td>
 
 										<td class="image-prod">
-											<div class="img" style="background-image:url(<?= urlOf('admin//assets/uploads/') . $cartData[$i][3] ?>);"></div>
+											<div class="img" style="background-image:url(<?= urlOf('admin/assets/uploads/') . $cartData[$i][3] ?>);"></div>
 										</td>
 
 										<td class="product-name">
@@ -70,6 +70,7 @@ $cartData = mysqli_fetch_all($result);
 
 										<td class="quantity">
 											<div class="input-group mb-3">
+
 												<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" max="100">
 												<input type="hidden" id="price" name="price" class="form-control input-number" value="<?= $cartData[$i][1] ?>" />
 												<input type="hidden" id="updatedprice" name="updatedprice" class="form-cotnrol input-number" value="<?= $cartData[$i][1] ?>" />
@@ -79,7 +80,7 @@ $cartData = mysqli_fetch_all($result);
 											</div>
 										</td>
 
-										<td class="price" id="totalPrice">₹&nbsp;</td>
+										<td class="price">₹&nbsp;<?= $cartData[$i][5] ?></td>
 
 									</tr><!-- END TR-->
 								</form>
@@ -114,7 +115,7 @@ $cartData = mysqli_fetch_all($result);
 		$("#updatedprice").text(totalPrice);
 		updateTotalPrice();
 		let data = {
-			totalPrice: $('#totalPrice').val(),
+			price: $('#price').val(),
 			quantity: $("#quantity").val(),
 			cartId: $("#cartId").val(),
 			productId: $("#productId").val(),

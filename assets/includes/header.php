@@ -1,3 +1,11 @@
+<?php 
+
+  $userId = $_SESSION['user_id'];
+  $sql = "SELECT COUNT(cart.prod_id) AS product_count FROM cart WHERE cart.user_id = '$userId'";
+  $result = mysqli_query($con, $sql);
+  $data = mysqli_fetch_all($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +56,18 @@
               <?php } else { ?>
                 <li class="nav-item"><a href="<?= urlOf('pages/profile.php') ?>" class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="<?= urlOf('api/user/userLogout.php') ?>" class="nav-link">Logout</a></li>
-                <li class="nav-item cart"><a href="<?= urlOf('pages/cart.php') ?>" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+                <li class="nav-item cart">
+                  <a href="<?= urlOf('pages/cart.php') ?>" class="nav-link">
+                    <span class="icon icon-shopping_cart"></span>
+                    <span class="bag d-flex justify-content-center align-items-center">
+                      <small><?php if(!$data) {
+                        echo "0";
+                      } else {
+                        echo $data[0][0];
+                      } ?></small>
+                    </span>
+                  </a>
+                </li>
             <?php } ?>
 	        </ul>
 	      </div>

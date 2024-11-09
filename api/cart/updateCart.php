@@ -8,9 +8,10 @@
     $userId = $_GET['userId'];
     $productId = $_GET['productId'];
     $cartId = $_GET['cartId'];
-    $totalPrice = $_GET['totalPrice'];
+    $price = $_GET['price'];
 
-    $query = "UPDATE `cart` SET `qty` = '$quantity', `cart_amt` = '$totalPrice' WHERE `cart_id` = '$cartId' AND `user_id` = '$userId'";
+    $cartAmount = $quantity * $price;
+    $query = "UPDATE `cart` SET `qty` = '$quantity', `cart_amt` = '$cartAmount' WHERE `cart_id` = '$cartId' AND `user_id` = '$userId'";
     $result = mysqli_query($con, $query);
     if($result) [
         "success" => true,

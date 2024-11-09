@@ -17,3 +17,5 @@ if ($result)
     echo json_encode(['success' => true]);
 else
     echo json_encode(['success' => false]);
+
+mysqli_close($con);
