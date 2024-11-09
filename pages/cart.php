@@ -46,7 +46,9 @@ $cartData = mysqli_fetch_all($result);
 								<th>Total</th>
 							</tr>
 						</thead>
-						<?php for ($i = 0; $i < count($cartData); $i++) {
+						<?php
+							if($cartData) { 
+							for ($i = 0; $i < count($cartData); $i++) {
 							print_r($cartData);
 						?>
 							<tbody>
@@ -81,7 +83,9 @@ $cartData = mysqli_fetch_all($result);
 									</tr><!-- END TR-->
 								</form>
 							</tbody>
-						<?php } ?>
+						<?php }} else { ?>
+							<h3 class="text-center">No products found in your cart.</h3>
+						<?php }?>
 					</table>
 				</div>
 			</div>

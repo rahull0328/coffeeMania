@@ -54,7 +54,7 @@ $data = mysqli_fetch_all($result);
 									</button>
 								</span>
 								<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-								<input type="text" name="price" id="price" value="<?= $data[$i][2] ?>">
+								<input type="hidden" name="price" id="price" value="<?= $data[$i][2] ?>">
 								<input type="hidden" value="<?= $id ?>" class="form-control input-number" name="productId" id="productId">
 								<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
 								<span class="input-group-btn ml-2">
