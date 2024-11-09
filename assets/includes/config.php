@@ -16,3 +16,5 @@
     {
         return BASE_URL . '/' . $path;
     }
+
+    session_start();

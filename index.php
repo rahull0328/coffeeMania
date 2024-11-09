@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require "./assets/includes/config.php";
 include pathOf('assets/includes/header.php');

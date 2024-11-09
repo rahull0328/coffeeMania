@@ -1,12 +1,13 @@
 <?php
-session_start();
+
+require "../assets/includes/config.php";
+include pathOf('assets/includes/header.php');
+
 if (!isset($_SESSION['user_id'])) {
 	header("Location:./login.php");
 	exit();
 }
 
-require "../assets/includes/config.php";
-include pathOf('assets/includes/header.php');
 
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT products.name, products.price, products.description, products.image, products.prod_id, cart.cart_amt AS cartAmt, cart.qty AS cartQty, cart.cart_id AS cartId FROM cart INNER JOIN products ON products.prod_id = cart.prod_id WHERE cart.user_id = '$user_id'";

@@ -1,12 +1,11 @@
 <?php
+require "../assets/includes/config.php";
+include pathOf('assets/includes/header.php');
 
-session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location:./login.php");
     exit();
 }
-require "../assets/includes/config.php";
-include pathOf('assets/includes/header.php');
 
 $id = $_SESSION['user_id'];
 $sql = "SELECT * FROM `customers` WHERE `user_id` = '$id'";
