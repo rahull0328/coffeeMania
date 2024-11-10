@@ -48,46 +48,56 @@ $cartData = mysqli_fetch_all($result);
 							</tr>
 						</thead>
 						<?php
-							if($cartData) { 
+						if ($cartData) {
 							for ($i = 0; $i < count($cartData); $i++) {
-							print_r($cartData);
+								print_r($cartData);
 						?>
-							<tbody>
-								<form method="get">
-									<tr class="text-center">
-										<td class="product-remove"><a href="../api/cart/remove.php?cartId=<?= $cartData[$i][7] ?>"><span class="icon-close"></span></a></td>
+								<tbody>
+									<form method="get">
+										<tr class="text-center">
+											<td class="product-remove"><a href="../api/cart/remove.php?cartId=<?= $cartData[$i][7] ?>"><span class="icon-close"></span></a></td>
 
-										<td class="image-prod">
-											<div class="img" style="background-image:url(<?= urlOf('admin/assets/uploads/') . $cartData[$i][3] ?>);"></div>
-										</td>
+											<td class="image-prod">
+												<div class="img" style="background-image:url(<?= urlOf('admin/assets/uploads/') . $cartData[$i][3] ?>);"></div>
+											</td>
 
-										<td class="product-name">
-											<h3><?= $cartData[$i][0] ?></h3>
-											<p><?= $cartData[$i][2] ?></p>
-										</td>
+											<td class="product-name">
+												<h3><?= $cartData[$i][0] ?></h3>
+												<p><?= $cartData[$i][2] ?></p>
+											</td>
 
-										<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
+											<td class="price">₹&nbsp;<?= $cartData[$i][1] ?></td>
 
-										<td class="quantity">
-											<div class="input-group mb-3">
+											<td class="quantity">
+												<div class="input-group mb-3">
+													<span class="input-group-btn mr-2">
+														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+															<i class="icon-minus"></i>
+														</button>
+													</span>
+													<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" readonly max="100">
+													<span class="input-group-btn ml-2">
+														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+															<i class="icon-plus"></i>
+														</button>
+													</span>
+													<input type="hidden" id="price" name="price" class="form-control input-number" value="<?= $cartData[$i][1] ?>" />
+													<input type="hidden" id="updatedprice" name="updatedprice" class="form-cotnrol input-number" value="<?= $cartData[$i][1] ?>" />
+													<input type="hidden" name="productId" id="productId" value="<?= $cartData[$i][4] ?>" class="form-control input-number">
+													<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
+													<input type="hidden" value="<?= $cartData[$i][7] ?>" class="form-control input-number" name="cartId" id="cartId">
+												</div>
+											</td>
 
-												<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" max="100">
-												<input type="hidden" id="price" name="price" class="form-control input-number" value="<?= $cartData[$i][1] ?>" />
-												<input type="hidden" id="updatedprice" name="updatedprice" class="form-cotnrol input-number" value="<?= $cartData[$i][1] ?>" />
-												<input type="hidden" name="productId" id="productId" value="<?= $cartData[$i][4] ?>" class="form-control input-number">
-												<input type="hidden" value="<?= $user_id ?>" class="form-control input-number" name="userId" id="userId">
-												<input type="hidden" value="<?= $cartData[$i][7] ?>" class="form-control input-number" name="cartId" id="cartId">
-											</div>
-										</td>
+											<td class="price">₹&nbsp;<?= $cartData[$i][5] ?></td>
 
-										<td class="price">₹&nbsp;<?= $cartData[$i][5] ?></td>
-
-									</tr><!-- END TR-->
-								</form>
-							</tbody>
-						<?php }} else { ?>
+										</tr><!-- END TR-->
+									</form>
+								</tbody>
+							<?php }
+						} else { ?>
 							<h3 class="text-center">No products found in your cart.</h3>
-						<?php }?>
+						<?php } ?>
 					</table>
 				</div>
 			</div>
@@ -102,6 +112,19 @@ $cartData = mysqli_fetch_all($result);
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
+	$('.quantity-right-plus').click(function(e) {
+		e.preventDefault();
+		var quantity = parseInt($('#quantity').val());
+		$('#quantity').val(quantity + 1);
+	});
+
+	$('.quantity-left-minus').click(function(e) {
+		e.preventDefault();
+		var quantity = parseInt($('#quantity').val());
+		if (quantity > 1)
+			$('#quantity').val(quantity - 1);
+	});
+
 	$(init)
 
 	function init() {

@@ -245,12 +245,12 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<?php for ($i = 0 ; $i < count($coffeeData); $i++) { ?>
 				<div class="col-md-3">
 					<div class="menu-entry">
-						<a href="#" class="img" style="background-image: url(<?= urlOf('admin//assets/uploads/').$coffeeData[$i][4] ?>);"></a>
+						<a href="#" class="img" style="background-image: url(<?= urlOf('admin/assets/uploads/').$coffeeData[$i][4] ?>);"></a>
 						<div class="text text-center pt-4">
 							<h3><a href="#"><?= $coffeeData[$i][1] ?></a></h3>
 							<p><?= $coffeeData[$i][3] ?></p>
 							<p class="price"><span><?= $coffeeData[$i][2] ?></span></p>
-							<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+							<p><a href="./pages/product-single.php?id=<?= $coffeeData[$i][0] ?>" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
 						</div>
 					</div>
 				</div>
