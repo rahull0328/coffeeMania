@@ -1,9 +1,11 @@
 <?php 
 
-  $userId = $_SESSION['user_id'];
-  $sql = "SELECT COUNT(cart.prod_id) AS product_count FROM cart WHERE cart.user_id = '$userId'";
-  $result = mysqli_query($con, $sql);
-  $data = mysqli_fetch_all($result);
+  if(isset($_SESSION['user_id'])){
+    $userId = $_SESSION['user_id'];
+    $sql = "SELECT COUNT(cart.prod_id) AS product_count FROM cart WHERE cart.user_id = '$userId'";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_all($result);
+  }
 
 ?>
 <!DOCTYPE html>
