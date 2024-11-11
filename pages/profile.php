@@ -18,7 +18,6 @@ $data = mysqli_fetch_all($result);
     <style>
         body {
             background-color: #f9f9fa;
-            padding-left: 80px;
         }
 
         .padding {
@@ -171,89 +170,100 @@ $data = mysqli_fetch_all($result);
         </div>
     </div>
 </section>
-
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-            <div class="col-xl-12 col-md-12">
-                <div class="card user-card-full">
-                    <div class="row m-l-0 m-r-0">
-                        <?php for ($i = 0; $i < count($data); $i++) { ?>
-                            <div class="col-sm-4 bg-c-lite-green user-profile">
-                                <div class="card-block text-center text-white">
-                                    <div class="m-b-25">
-                                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
-                                    </div>
-                                    <h6 class="f-w-600"><?= $data[$i][1] ?></h6>
-                                    <a class="mb-0 fw-normal align-middle">
-                                        <!-- Button trigger modal -->
-
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="card-block">
-                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Email</p>
-                                            <h6 class="text-muted f-w-400"><?= $data[$i][2] ?></h6>
+<center>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <h1>Hellow <span style="color: red;"><?php echo $_SESSION["username"]; ?>!</span></h1>
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-12 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row ml-12">
+                            <?php for ($i = 0; $i < count($data); $i++) { ?>
+                                <div class="col-sm-4 bg-c-lite-green user-profile">
+                                    <div class="card-block text-center text-white">
+                                        <div class="m-b-25">
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Username</p>
-                                            <h6 class="text-muted f-w-400"><?= $data[$i][1] ?></h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Delete Account</p>
-                                            <a class="mb-0 fw-normal align-middle" href="<?= urlOf('api/user/deleteProfile.php?id=') . $data[$i][0] ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3"></path>
-                                                    <path d="M18 13.3l-6.3 -6.3"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
+                                        <h6 class="f-w-600"><?= $data[$i][1] ?></h6>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                                <div class="col-sm-8">
+                                    <div class="card-block">
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Email</p>
+                                                <h6 class="text-muted f-w-400"><?= $data[$i][2] ?></h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Username</p>
+                                                <h6 class="text-muted f-w-400"><?= $data[$i][1] ?></h6>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Update Account</p>
+                                                <a class="mb-0 fw-normal align-middle">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" onclick="showUpdateModal(<?= $data[$i][0] ?>, '<?= $data[$i][2] ?>')" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                                                        <path d="M16 5l3 3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Delete Account</p>
+                                                <a class="mb-0 fw-normal align-middle" href="<?= urlOf('api/user/deleteProfile.php?id=') . $data[$i][0] ?>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3"></path>
+                                                        <path d="M18 13.3l-6.3 -6.3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</center>
 
+<!-- show insert model -->
+<dialog id="updateProfileModal" class="p-4">
+    <form method="POST" id="insertForm">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mb-3">
+                    <label for="" class="form-label mb-3">Update Profile : </label>
+                    <input type="text" class="" style="border: #919aa3;" id="email" name="email" required>
+                    <input type="text" class="" name="updateId" id="id">
+                </div>
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</dialog>
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-    
-    //delte profile call
-    function deleteProfile(e) {
+    // show insert model
+    function showUpdateModal(id, email) {
+        document.getElementById('updateProfileModal').showModal();
+        $("#id").val(id);
+        $("#email").val(email);
+    }
 
-        e.preventDefault();
-
-        let data = {
-
-        }
-        //ajax call to delete profile
-        $.ajax({
-            url: '../api/user/deleteProfile.php',
-            type: 'POST',
-            data: {
-                //send user id
-            },
-            success: function(response) {
-                if (response ==='success') {
-                    //redirect to login page
-                    window.location.href = 'login.php';
-                } else {
-                    alert('Failed to delete profile');
-                }
-            }
-        });
+    function closeUpdateModal() {
+        document.getElementById('updateProfileModal').close();
     }
 </script>
 <?php

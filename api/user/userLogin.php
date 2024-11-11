@@ -21,7 +21,7 @@
             echo json_encode(["status" => false, "message" => "Invalid username or password."]);
         }
     } else {
-        echo json_encode(["status" => false, "message" => "Error Establishing Connection."]);
+        echo json_encode(["status" => false, "message" => "No Data Found."]);
     }
 
     $stmt->close();
