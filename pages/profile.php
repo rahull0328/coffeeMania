@@ -187,9 +187,7 @@ $data = mysqli_fetch_all($result);
                                     <h6 class="f-w-600"><?= $data[$i][1] ?></h6>
                                     <a class="mb-0 fw-normal align-middle">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal">
-                                            Update Profile
-                                        </button>
+
                                     </a>
                                 </div>
                             </div>
@@ -209,7 +207,13 @@ $data = mysqli_fetch_all($result);
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Delete Account</p>
-
+                                            <a class="mb-0 fw-normal align-middle" href="<?= urlOf('api/user/deleteProfile.php?id=') . $data[$i][0] ?>">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3"></path>
+                                                    <path d="M18 13.3l-6.3 -6.3"></path>
+                                                </svg>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -222,30 +226,34 @@ $data = mysqli_fetch_all($result);
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-    function showModal() {
-        updateProfileModal.showModal();
+    
+    //delte profile call
+    function deleteProfile(e) {
+
+        e.preventDefault();
+
+        let data = {
+
+        }
+        //ajax call to delete profile
+        $.ajax({
+            url: '../api/user/deleteProfile.php',
+            type: 'POST',
+            data: {
+                //send user id
+            },
+            success: function(response) {
+                if (response ==='success') {
+                    //redirect to login page
+                    window.location.href = 'login.php';
+                } else {
+                    alert('Failed to delete profile');
+                }
+            }
+        });
     }
 </script>
 <?php
