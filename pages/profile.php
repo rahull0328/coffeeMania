@@ -206,12 +206,7 @@ $data = mysqli_fetch_all($result);
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600">Update Account</p>
                                                 <a class="mb-0 fw-normal align-middle">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" onclick="showUpdateModal(<?= $data[$i][0] ?>, '<?= $data[$i][2] ?>')" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                                                        <path d="M16 5l3 3"></path>
-                                                    </svg>
+                                                    
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
@@ -236,35 +231,9 @@ $data = mysqli_fetch_all($result);
     </div>
 </center>
 
-<!-- show insert model -->
-<dialog id="updateProfileModal" class="p-4">
-    <form method="POST" id="insertForm">
-        <div class="card">
-            <div class="card-body">
-                <div class="form-group mb-3">
-                    <label for="" class="form-label mb-3">Update Profile : </label>
-                    <input type="text" class="" style="border: #919aa3;" id="email" name="email" required>
-                    <input type="text" class="" name="updateId" id="id">
-                </div>
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Cancel</button>
-            </div>
-        </div>
-    </form>
-</dialog>
-
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-    // show insert model
-    function showUpdateModal(id, email) {
-        document.getElementById('updateProfileModal').showModal();
-        $("#id").val(id);
-        $("#email").val(email);
-    }
-
-    function closeUpdateModal() {
-        document.getElementById('updateProfileModal').close();
-    }
+    
 </script>
 <?php
 
