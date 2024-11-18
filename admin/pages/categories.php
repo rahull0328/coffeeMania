@@ -1,12 +1,13 @@
 <?php
-session_start();
-if(!isset($_SESSION['admin_id'])){
-    header("Location: ./login.php");
-}
+
 
 require "../../assets/includes/config.php";
 include pathOf('admin/assets/includes/sidebar.php');
 include pathOf('admin/assets/includes/header.php');
+
+if(!isset($_SESSION['admin_id'])){
+    header("Location: ./login.php");
+}
 
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($con, $sql);
