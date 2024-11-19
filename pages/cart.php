@@ -70,17 +70,7 @@ $cartData = mysqli_fetch_all($result);
 
 											<td class="quantity">
 												<div class="input-group mb-3">
-													<span class="input-group-btn mr-2">
-														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-															<i class="icon-minus"></i>
-														</button>
-													</span>
-													<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" readonly max="100">
-													<span class="input-group-btn ml-2">
-														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-															<i class="icon-plus"></i>
-														</button>
-													</span>
+													<input type="text" id="quantity" name="quantity" class="form-control input-number" onchange="calcPrice()" value="<?= $cartData[$i][6] ?>" max="100">
 													<input type="hidden" id="price" name="price" class="form-control input-number" value="<?= $cartData[$i][1] ?>" />
 													<input type="hidden" id="updatedprice" name="updatedprice" class="form-cotnrol input-number" value="<?= $cartData[$i][1] ?>" />
 													<input type="hidden" name="productId" id="productId" value="<?= $cartData[$i][4] ?>" class="form-control input-number">
@@ -104,7 +94,7 @@ $cartData = mysqli_fetch_all($result);
 		</div>
 		<div class="row justify-content-end">
 			<div class="col col-lg-12 col-md-12 mt-5 cart-wrap ftco-animate">
-				<p class="text-center"><a href="" class="btn btn-primary py-3 px-4">Place Order</a></p>
+				<p class="text-center"><input type="button" onclick="placeOrder()" class="btn btn-primary py-3 px-4" value="Place Order" /></p>
 			</div>
 		</div>
 	</div>
@@ -112,18 +102,6 @@ $cartData = mysqli_fetch_all($result);
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-	$('.quantity-right-plus').click(function(e) {
-		e.preventDefault();
-		var quantity = parseInt($('#quantity').val());
-		$('#quantity').val(quantity + 1);
-	});
-
-	$('.quantity-left-minus').click(function(e) {
-		e.preventDefault();
-		var quantity = parseInt($('#quantity').val());
-		if (quantity > 1)
-			$('#quantity').val(quantity - 1);
-	});
 
 	$(init)
 
@@ -145,7 +123,7 @@ $cartData = mysqli_fetch_all($result);
 			userId: $("#userId").val(),
 		}
 		console.log(data);
-		$.get("../api/cart/updateCart.php", data, function(response) {
+		$.post("../api/cart/updateCart.php", data, function(response) {
 			window.location.reload();
 		})
 	}
@@ -157,6 +135,35 @@ $cartData = mysqli_fetch_all($result);
 		console.log(mainTotal);
 		$("#totalPrice").text(mainTotal);
 	}
+
+	//ajax call for placing order
+	function placeOrder(e) {
+        e.preventDefault();
+
+		let data = {
+            totalPrice: $("#totalPrice").text(),
+            cartId: [],
+		}
+    }
+
+	$.ajax({
+		url: '../api/cart/placeOrder.php',
+        method: 'POST',
+        data: {
+            userId: $("#userId").val(),
+        },
+        success: function(response) {
+            if (response.status ==='success') {
+                window.location.href = './viewOrder.php';
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+            alert('Error placing order. Please try again later.');
+        }
+	});
 </script>
 
 <?php
