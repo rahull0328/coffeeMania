@@ -132,7 +132,7 @@ $products = mysqli_fetch_all($statement, MYSQLI_ASSOC);
 		$.post('../api/cart/addToCart.php', data, function(response) {
 			console.log(response);
 			if (response['success'] == true)
-				header('Location: ./cart.php');
+				window.location.href = './cart.php';
 			else
 				return alert("Something went wrong");
 		});
