@@ -50,6 +50,7 @@ $cartData = mysqli_fetch_all($result);
 						<?php
 						if ($cartData) {
 							for ($i = 0; $i < count($cartData); $i++) {
+								print_r($cartData);
 						?>
 								<tbody>
 									<form method="POST">
@@ -91,8 +92,12 @@ $cartData = mysqli_fetch_all($result);
 			</div>
 		</div>
 		<div class="row justify-content-end">
-			<div class="col col-lg-12 col-md-12 mt-5 cart-wrap ftco-animate">
+			<div class="col col-lg-6 col-md-6 mt-5 cart-wrap ftco-animate">
 				<p class="text-center"><input type="button" class="btn btn-primary py-3 px-4" value="Place Order" onclick="placeOrder()" /></p>
+
+			</div>
+			<div class="col col-lg-6 col-md-6 mt-5 cart-wrap ftco-animate">
+				<p class="text-center"><a href="./viewOrder.php" class="btn btn-primary py-3 px-4">View Order</a></p>
 			</div>
 		</div>
 	</div>
@@ -134,22 +139,29 @@ $cartData = mysqli_fetch_all($result);
 		$("#totalPrice").text(mainTotal);
 	}
 
-	//ajax call for placing order
 	function placeOrder() {
-
-		let data = {
+		let orderData = {
 			productId: $("#productId").val(),
 			cartId: $("#cartId").val(),
-			quantity: $("#quantity").val(),
-			price: $("#price").val(),
+			userId: $("#userId").val(),
+            price: $("#price").val(),
+            quantity: $("#quantity").val(),
 		}
 
-		$.post('../api/order/placeOrder.php', data, function(response) {
-			console.log(response);
-			if (response['success'] == true)
-				window.location.href = '../pages/viewOrder.php';
-			else
-				return alert("Something went wrong");
+		console.log(orderData);
+		$.ajax({
+			url: '../api/order/placeOrder.php',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({orderData: orderData}), // Make sure to stringify the data
+			success: function(response) {
+				alert("Order placed successfully!");
+				window.location.href = "./viewOrder.php";
+				console.log(response); // Log the response from the server
+			},
+			error: function(xhr, status, error) {
+				console.log("Error:", error);
+			}
 		});
 	}
 </script>

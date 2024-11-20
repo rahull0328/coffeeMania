@@ -35,6 +35,7 @@
 
     
     <link rel="stylesheet" href="<?= urlof('assets/css/flaticon.css') ?>">
+    <link rel="stylesheet" href="<?= urlOf('assets/css/dataTables.dataTables.min.css') ?>">
     <link rel="stylesheet" href="<?= urlof('assets/css/icomoon.css') ?>">
     <link rel="stylesheet" href="<?= urlof('assets/css/style.css') ?>">
     <link rel="shortcut icon" href="<?= urlOf('assets/images/favicon.png') ?>" type="image/x-icon">

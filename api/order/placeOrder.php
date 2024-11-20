@@ -1,23 +1,41 @@
 <?php
+require '../../assets/includes/config.php';
 
-    require '../../assets/includes/config.php';
+header('Content-Type: application/json');
 
-    header('Content-Type: application/json');
+$data = file_get_contents("php://input");
+error_log("Raw POST Data: " . $data);
+$orderData = json_decode($data, true);
 
-    $userId = $_SESSION['user_id'];
-    $quantity = $_POST['quantity'];
-    $productId = $_POST['productId'];
-    $price = $_POST['price'];
-    $cartId = $_POST['cartId'];
+if (isset($orderData['orderData']) && is_array($orderData['orderData']) && count($orderData['orderData']) > 0) {
+    
+    $orderData = $orderData['orderData']; 
 
-    $cartAmount = $quantity * $price;
-    $query = "INSERT INTO `orders`(`cart_id`, `total_amount`, `prod_id`, `user_id`) VALUES('$cartId', '$cartAmount', '$productId', '$userId')";
-    $result = mysqli_query($con, $query);
+    $userId = $orderData['userId'];
+    $productId = $orderData['productId'];
+    $cartId = $orderData['cartId'];
+    $price = $orderData['price'];
+    $quantity = $orderData['quantity'];
 
-    if ($result)
+    $totalAmount = $quantity * $price;
+
+    $orderQuery = "INSERT INTO `orders` (`user_id`, `total_amount`) VALUES ('$userId', '$totalAmount')";
+    if (mysqli_query($con, $orderQuery)) {
+        $orderId = mysqli_insert_id($con);
+
+        $orderItemQuery = "INSERT INTO `order_items` (`order_id`, `product_id`, `quantity`, `price`) VALUES ('$orderId', '$productId', '$quantity', '$price')";
+        mysqli_query($con, $orderItemQuery);
+
+        $deleteCartQuery = "DELETE FROM `cart` WHERE `cart_id` = '$cartId' AND `user_id` = '$userId'";
+        mysqli_query($con, $deleteCartQuery);
+
         echo json_encode(['success' => true]);
-    else
-        echo json_encode(['success' => false]);
+    } else {
+        echo json_encode(['error' => 'Failed to place order']);
+    }
+} else {
+    echo json_encode(['error' => 'Invalid or empty order data']);
+}
 
-    echo json_encode($result);
-    mysqli_close($con);
+mysqli_close($con);
+?>

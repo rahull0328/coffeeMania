@@ -10,7 +10,7 @@
     $result = mysqli_query($con, $query);
     if($result) [
         "success" => true,    
-        "message" => "Removing from Cart successful!"
+        "message" => "Product Removed From Product !"
     ];
 
     header("Location: ../../pages/cart.php");
