@@ -50,10 +50,9 @@ $cartData = mysqli_fetch_all($result);
 						<?php
 						if ($cartData) {
 							for ($i = 0; $i < count($cartData); $i++) {
-								print_r($cartData);
 						?>
 								<tbody>
-									<form method="get">
+									<form method="POST">
 										<tr class="text-center">
 											<td class="product-remove"><a href="../api/cart/remove.php?cartId=<?= $cartData[$i][7] ?>"><span class="icon-close"></span></a></td>
 
@@ -79,10 +78,9 @@ $cartData = mysqli_fetch_all($result);
 												</div>
 											</td>
 
-											<td class="price">₹&nbsp;<?= $cartData[$i][5] ?></td>
+											<td class="price" id="">₹&nbsp;<?= $cartData[$i][5] ?></td>
 
 										</tr><!-- END TR-->
-									</form>
 								</tbody>
 							<?php }
 						} else { ?>
@@ -94,15 +92,15 @@ $cartData = mysqli_fetch_all($result);
 		</div>
 		<div class="row justify-content-end">
 			<div class="col col-lg-12 col-md-12 mt-5 cart-wrap ftco-animate">
-				<p class="text-center"><input type="button" onclick="placeOrder()" class="btn btn-primary py-3 px-4" value="Place Order" /></p>
+				<p class="text-center"><input type="button" class="btn btn-primary py-3 px-4" value="Place Order" onclick="placeOrder()" /></p>
 			</div>
 		</div>
 	</div>
+	</form>
 </section>
 
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script>
-
 	$(init)
 
 	function init() {
@@ -137,33 +135,23 @@ $cartData = mysqli_fetch_all($result);
 	}
 
 	//ajax call for placing order
-	function placeOrder(e) {
-        e.preventDefault();
+	function placeOrder() {
 
 		let data = {
-            totalPrice: $("#totalPrice").text(),
-            cartId: [],
+			productId: $("#productId").val(),
+			cartId: $("#cartId").val(),
+			quantity: $("#quantity").val(),
+			price: $("#price").val(),
 		}
-    }
 
-	$.ajax({
-		url: '../api/cart/placeOrder.php',
-        method: 'POST',
-        data: {
-            userId: $("#userId").val(),
-        },
-        success: function(response) {
-            if (response.status ==='success') {
-                window.location.href = './viewOrder.php';
-            } else {
-                alert(response.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-            alert('Error placing order. Please try again later.');
-        }
-	});
+		$.post('../api/order/placeOrder.php', data, function(response) {
+			console.log(response);
+			if (response['success'] == true)
+				window.location.href = '../pages/viewOrder.php';
+			else
+				return alert("Something went wrong");
+		});
+	}
 </script>
 
 <?php

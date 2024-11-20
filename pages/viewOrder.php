@@ -29,16 +29,6 @@ $user_id = $_SESSION['user_id'];
 	</div>
 </section>
 
-<section class="ftco-section ftco-cart">
-	<div class="container">
-		<div class="row justify-content-end">
-			<div class="col col-lg-12 col-md-12 mt-5 cart-wrap ftco-animate">
-				<p class="text-center"><a href="" class="btn btn-primary py-3 px-4">Place Order</a></p>
-			</div>
-		</div>
-	</div>
-</section>
-
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 
 <?php

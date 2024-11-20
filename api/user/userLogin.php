@@ -16,7 +16,10 @@
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['username'] = $row['username'];
             
-            echo json_encode(["status" => true, "message" => "Login successful! Welcome, " . $username]);
+            echo json_encode([
+                "status" => true, 
+                "message" => "Login successful! Welcome, ",
+                "username" => $username]);
         } else {
             echo json_encode(["status" => false, "message" => "Invalid username or password."]);
         }
