@@ -18,7 +18,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 					<span class="subheading">Welcome</span>
 					<h1 class="mb-4">The Best Coffee Testing Experience</h1>
 					<p class="mb-4 mb-md-5">Crafted Coffee, Cozy Vibes - Because You Deserve a Break from the Ordinary.</p>
-					<p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+					<p><a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 				</div>
 
 			</div>
@@ -34,7 +34,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 					<span class="subheading">Welcome</span>
 					<h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
 					<p class="mb-4 mb-md-5">Crafted Coffee, Cozy Vibes - Because You Deserve a Break from the Ordinary.</p>
-					<p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+					<p><a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 				</div>
 
 			</div>
@@ -50,7 +50,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 					<span class="subheading">Welcome</span>
 					<h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
 					<p class="mb-4 mb-md-5">Crafted Coffee, Cozy Vibes - Because You Deserve a Break from the Ordinary.</p>
-					<p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+					<p><a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
 				</div>
 
 			</div>
