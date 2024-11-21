@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT products.name, products.description, products.image, orders.total_amount AS totAmt, order_items.quantity AS ordersQty FROM order_items INNER JOIN products ON products.prod_id = order_items.product_id INNER JOIN orders ON orders.order_id = order_items.order_id";
+$sql = "SELECT products.name, products.description, products.image, orders.total_amount AS totAmt, order_items.quantity AS ordersQty FROM order_items INNER JOIN products ON products.prod_id = order_items.product_id INNER JOIN orders ON orders.order_id = order_items.order_id WHERE orders.user_id = '$user_id'";
 $result = mysqli_query($con, $sql);
 $orderData = mysqli_fetch_all($result);
 
