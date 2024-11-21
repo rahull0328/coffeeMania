@@ -50,10 +50,11 @@ require '../../assets/includes/config.php';
                 url: '../../api/admin/adminLogin.php',
                 data: data,
                 method: 'POST',
+                dataType: 'json',
                 success: function(response) {
                     if (response.status) {
                         alert('Welcome ' + response.username + '!');
-                        window.location.href = '../index.php';
+                        window.location.href = '../../admin/index.php';
                         console.log(response);
                     } else {
                         alert(response.message);

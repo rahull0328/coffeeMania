@@ -50,7 +50,6 @@ $cartData = mysqli_fetch_all($result);
 						<?php
 						if ($cartData) {
 							for ($i = 0; $i < count($cartData); $i++) {
-								print_r($cartData);
 						?>
 								<tbody>
 									<form method="POST">

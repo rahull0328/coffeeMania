@@ -10,8 +10,23 @@ if (!isset($_SESSION['admin_id'])) {
 include pathOf('admin/assets/includes/sidebar.php');
 include pathOf('admin/assets/includes/header.php');
 
-
 $id = $_SESSION['admin_id'];
+
+$sql = "SELECT c.username AS customer_name, p.name ,p.price AS product_price, o.total_amount, o.order_date AS order_date, oi.quantity
+FROM 
+    customers c
+INNER JOIN 
+    orders o ON c.user_id = o.user_id
+INNER JOIN 
+    order_items oi ON o.order_id = oi.order_id
+INNER JOIN 
+    products p ON oi.product_id = p.prod_id
+WHERE
+  DATE(o.order_date) = CURDATE()";
+
+$result = mysqli_query($con, $sql);
+$data = mysqli_fetch_all($result);
+
 ?>
 
 <div class="container-fluid">
@@ -25,104 +40,64 @@ $id = $_SESSION['admin_id'];
             <table class="table text-nowrap mb-0 align-middle">
               <thead class="text-dark fs-4">
                 <tr>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">Id</h6>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-0 align-middle text-center">Sr No.</h6>
                   </th>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">Assigned</h6>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-0 align-middle text-center">Customer Name</h6>
                   </th>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">Name</h6>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-0 align-middle text-center">Product Name</h6>
                   </th>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">Priority</h6>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-0 align-middle text-center">Product Price</h6>
                   </th>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">Budget</h6>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-o align-middle text-center">Quantity</h6>
+                  </th>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-o align-middle text-center">Total Amount</h6>
+                  </th>
+                  <th class="border-bottom-0 align-middle">
+                    <h6 class="fw-semibold mb-o align-middle text-center">Order Date</h6>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">1</h6>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                    <span class="fw-normal">Web Designer</span>
-                  </td>
-                  <td class="border-bottom-0">
-                    <p class="mb-0 fw-normal">Elite Admin</p>
-                  </td>
-                  <td class="border-bottom-0">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                    </div>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">2</h6>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                    <span class="fw-normal">Project Manager</span>
-                  </td>
-                  <td class="border-bottom-0">
-                    <p class="mb-0 fw-normal">Real Homes WP Theme</p>
-                  </td>
-                  <td class="border-bottom-0">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
-                    </div>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">3</h6>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                    <span class="fw-normal">Project Manager</span>
-                  </td>
-                  <td class="border-bottom-0">
-                    <p class="mb-0 fw-normal">MedicalPro WP Theme</p>
-                  </td>
-                  <td class="border-bottom-0">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="badge bg-danger rounded-3 fw-semibold">High</span>
-                    </div>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">4</h6>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                    <span class="fw-normal">Frontend Engineer</span>
-                  </td>
-                  <td class="border-bottom-0">
-                    <p class="mb-0 fw-normal">Hosting Press HTML</p>
-                  </td>
-                  <td class="border-bottom-0">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                    </div>
-                  </td>
-                  <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                  </td>
-                </tr>
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                  for ($i = 0; $i < count($data); $i++) { ?>
+                    <tr>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 text-center"><?= $i + 1  ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][0] ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][1] ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][2] ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][5] ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][3] ?></h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1 text-center"><?= $data[$i][4] ?></h6>
+                      </td>
+                    </tr>
+                  <?php }
+                } else { ?>
+                  <tr>
+                    <td colspan="7" class="border-bottom-0">
+                      <h6 class="fw-semibold mb-1 text-center">No recent transactions found.</h6>  
+                    </td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>

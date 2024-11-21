@@ -203,13 +203,7 @@ $data = mysqli_fetch_all($result);
                                         </div>
                                         <br />
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Update Account</p>
-                                                <a class="mb-0 fw-normal align-middle">
-                                                    
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <p class="m-b-10 f-w-600">Delete Account</p>
                                                 <a class="mb-0 fw-normal align-middle" href="<?= urlOf('api/user/deleteProfile.php?id=') . $data[$i][0] ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
