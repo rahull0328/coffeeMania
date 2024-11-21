@@ -162,7 +162,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 				<div class="heading-section text-md-right ftco-animate">
 					<span class="subheading">Discover</span>
 					<h2 class="mb-4">Our Menu</h2>
-					<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+					<p class="mb-4">Step into a world of flavors at our café, where every dish is crafted with care and passion. Whether you're craving a hearty breakfast, a light lunch, or a comforting dinner, our diverse menu offers something for everyone. From freshly brewed coffee to indulgent pastries, savory meals to decadent desserts, we’ve got the perfect combination to satisfy your taste buds. Explore our extensive selection of artisanal creations, made with the finest ingredients, and let every bite take you on a delightful journey.</p>
 					<p><a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
 				</div>
 			</div>
@@ -248,7 +248,9 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<div class="col-md-7 heading-section ftco-animate text-center">
 				<span class="subheading">Discover</span>
 				<h2 class="mb-4">Our Best Sellers</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+				<p>
+				Discover the favorites that keep our customers coming back for more! Our best sellers are a perfect blend of delicious flavors and time-tested favorites.
+				</p>
 			</div>
 		</div>
 		<div class="row">
@@ -311,7 +313,9 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<div class="col-md-7 heading-section text-center ftco-animate">
 				<span class="subheading">Testimony</span>
 				<h2 class="mb-4">Customers Says</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+				<p>
+					Hear out what our regular customers are saying about CoffeeMania
+				</p>
 			</div>
 		</div>
 	</div>
@@ -320,7 +324,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<div class="col-lg align-self-sm-end ftco-animate">
 				<div class="testimony">
 					<blockquote>
-						<p>&ldquo;Absolutely love this place! The coffee is always rich and flavorful, and the ambiance is perfect for relaxing or catching up with friends. Highly recommend the signature latte—it’s a game-changer!&rdquo;</p>
+						<p>&ldquo;Absolutely love this place! The coffee is always rich and flavorful, and the ambiance is perfect for relaxing or catching up with friends.&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">
@@ -333,7 +337,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<div class="col-lg align-self-sm-end">
 				<div class="testimony overlay">
 					<blockquote>
-						<p>&ldquo;Fast service, friendly staff, and the best pastries in town! The croissants are heavenly, and the cappuccino hits the spot every time. A must-visit for coffee lovers!&rdquo;</p>
+						<p>&ldquo;Fast service, friendly staff, and the best pastries in town! The croissants are heavenly, and the cappuccino hits the spot every time. A must-visit for coffee lovers who like it smooth and sweet!&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">
@@ -372,7 +376,7 @@ $coffeeData = mysqli_fetch_all($coffeeResult);
 			<div class="col-lg align-self-sm-end ftco-animate">
 				<div class="testimony">
 					<blockquote>
-						<p>&ldquo;The perfect café for any occasion—work meetings, dates, or just a quiet moment alone. Their mocha is out of this world, and the customer service is fantastic.&rdquo;</p>
+						<p>&ldquo;The perfect cafe for any occasion—work meetings, dates, or just a quiet moment alone. Their mocha is out of this world, and the customer service is fantastic.&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">

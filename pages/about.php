@@ -31,7 +31,11 @@ include pathOf('assets/includes/header.php');
 				<h2 class="mb-4">Our Story</h2>
 			</div>
 			<div>
-				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+				<p>
+					Welcome to CoffeeMania, where every sip and bite tells a story of passion, quality, and community. Our journey began with a simple dream: to create a space where people can come together to enjoy exceptional coffee, delicious treats, and unforgettable moments.
+					From handpicked beans sourced from the finest growers to our chef-inspired menu, we’re dedicated to delivering an experience that delights your senses. Whether you’re here to relax, connect, or create, we’re proud to be part of your day.
+					Step into our story and discover the heart behind every flavor.
+				</p>
 			</div>
 		</div>
 	</div>
@@ -44,74 +48,76 @@ include pathOf('assets/includes/header.php');
 			<div class="col-md-7 heading-section text-center ftco-animate">
 				<span class="subheading">Testimony</span>
 				<h2 class="mb-4">Customers Says</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+				<p>
+					Hear out what our regular customers are saying about CoffeeMania
+				</p>
 			</div>
 		</div>
 	</div>
 	<div class="container-wrap">
 		<div class="row d-flex no-gutters">
-			<div class="col-lg align-self-sm-end">
+			<div class="col-lg align-self-sm-end ftco-animate">
 				<div class="testimony">
 					<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-						<div class="image mr-3 align-self-center">
-							<img src="<?= urlOf('assets/images/person_1.jpg') ?>" alt="">
-						</div>
-						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg align-self-sm-end">
-				<div class="testimony overlay">
-					<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+						<p>&ldquo;Absolutely love this place! The coffee is always rich and flavorful, and the ambiance is perfect for relaxing or catching up with friends.&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">
 							<img src="<?= urlOf('assets/images/person_2.jpg') ?>" alt="">
 						</div>
-						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg align-self-sm-end">
-				<div class="testimony">
-					<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name. &rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-						<div class="image mr-3 align-self-center">
-							<img src="images/person_3.jpg" alt="">
-						</div>
-						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						<div class="name align-self-center">Savan Thakrar<span class="position">Illustrator Designer</span></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg align-self-sm-end">
 				<div class="testimony overlay">
 					<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however.&rdquo;</p>
+						<p>&ldquo;Fast service, friendly staff, and the best pastries in town! The croissants are heavenly, and the cappuccino hits the spot every time. A must-visit for coffee lovers who like it smooth and sweet!&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">
-							<img src="images/person_2.jpg" alt="">
+							<img src="<?= urlOf('assets/images/person_3.jpg') ?>" alt="">
 						</div>
-						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						<div class="name align-self-center">Vaibhavi Rana <span class="position">Frontend Engineer</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg align-self-sm-end ftco-animate">
+				<div class="testimony">
+					<blockquote>
+						<p>&ldquo;Amazing experience every time. The staff is so welcoming, and they always make sure you’re satisfied. Their focus on quality and service is unbeatable!&rdquo;</p>
+					</blockquote>
+					<div class="author d-flex mt-4">
+						<div class="image mr-3 align-self-center">
+							<img src="<?= urlOf('assets/images/person_2.jpg') ?>" alt="">
+						</div>
+						<div class="name align-self-center">Bhumi Soni<span class="position">Senior Backend Developer</span></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg align-self-sm-end">
-				<div class="testimony">
+				<div class="testimony overlay">
 					<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name. &rdquo;</p>
+						<p>&ldquo;I’ve traveled a lot, but this café serves some of the best coffee I’ve ever had. The beans are clearly top-notch, and the baristas know their craft. Five stars to the quality of coffee and the chef!&rdquo;</p>
 					</blockquote>
 					<div class="author d-flex mt-4">
 						<div class="image mr-3 align-self-center">
-							<img src="images/person_3.jpg" alt="">
+							<img src="<?= urlOf('assets/images/person_4.jpg') ?>" alt="">
 						</div>
-						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						<div class="name align-self-center">Rakshit Patel <span class="position">HR</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg align-self-sm-end ftco-animate">
+				<div class="testimony">
+					<blockquote>
+						<p>&ldquo;The perfect cafe for any occasion—work meetings, dates, or just a quiet moment alone. Their mocha is out of this world, and the customer service is fantastic.&rdquo;</p>
+					</blockquote>
+					<div class="author d-flex mt-4">
+						<div class="image mr-3 align-self-center">
+							<img src="<?= urlOf('assets/images/person_3.jpg') ?>" alt="">
+						</div>
+						<div class="name align-self-center">Rahul Mehta <span class="position">Full Stack Developer</span></div>
 					</div>
 				</div>
 			</div>
@@ -126,30 +132,30 @@ include pathOf('assets/includes/header.php');
 				<div class="heading-section text-md-right ftco-animate">
 					<span class="subheading">Discover</span>
 					<h2 class="mb-4">Our Menu</h2>
-					<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
+					<p class="mb-4">Step into a world of flavors at our café, where every dish is crafted with care and passion. Whether you're craving a hearty breakfast, a light lunch, or a comforting dinner, our diverse menu offers something for everyone. From freshly brewed coffee to indulgent pastries, savory meals to decadent desserts, we’ve got the perfect combination to satisfy your taste buds. Explore our extensive selection of artisanal creations, made with the finest ingredients, and let every bite take you on a delightful journey</p>
+					<p><a href="<?= urlOf('pages/menu.php') ?>" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="menu-entry">
-							<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+							<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-1.jpg') ?>);"></a>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="menu-entry mt-lg-4">
-							<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
+							<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-2.jpg') ?>);"></a>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="menu-entry">
-							<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
+							<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-3.jpg') ?>);"></a>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="menu-entry mt-lg-4">
-							<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
+							<a href="#" class="img" style="background-image: url(<?= urlOf('assets/images/menu-4.jpg') ?>);"></a>
 						</div>
 					</div>
 				</div>
@@ -158,7 +164,7 @@ include pathOf('assets/includes/header.php');
 	</div>
 </section>
 
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(<?= urlOf('assets/images/bg_2.jpg') ?>);" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center">

@@ -32,7 +32,9 @@
               </div>
               <div class="media-body">
                 <h3 class="heading">Easy to Order</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                <p>
+                Enjoy a seamless experience with our Easy to Order system—browse, select, and place your order in just a few clicks!
+                </p>
               </div>
             </div>      
           </div>
@@ -43,7 +45,9 @@
               </div>
               <div class="media-body">
                 <h3 class="heading">Fastest Delivery</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                <p>
+                Craving your favorites? We've got you covered with lightning-fast delivery! Freshly prepared and brought straight to your doorstep in no time.
+                </p>
               </div>
             </div>      
           </div>
@@ -53,7 +57,9 @@
               	<span class="flaticon-coffee-bean"></span></div>
               <div class="media-body">
                 <h3 class="heading">Quality Coffee</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                <p>
+                Experience the rich bold flavors of our premium coffee. Sourced from the finest beans, every cup is brewed to perfection just for you.
+                </p>
               </div>
             </div>    
           </div>
