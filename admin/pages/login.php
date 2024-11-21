@@ -21,9 +21,9 @@ require '../../assets/includes/config.php';
                     <small>Welcome Back</small>
                 </h2>
             </div>
-            <form method="POST" action="<?= urlOf('api/admin/adminLogin.php') ?>" class="card-form" id="loginForm">
+            <form method="POST" class="card-form" id="loginForm">
                 <div class="input">
-                    <input type="text" class="input-field" autofocus id="name" name="username" required />
+                    <input type="text" class="input-field" autofocus id="username" name="username" required />
                     <label class="input-label">Username</label>
                 </div>
                 <div class="input">
@@ -31,11 +31,42 @@ require '../../assets/includes/config.php';
                     <label class="input-label">Password</label>
                 </div>
                 <div class="action">
-                    <button class="action-button" type="submit" name="submit" id="submit">Get started</button>
+                    <button class="action-button" type="button" onclick="adminLogin()" name="submit" id="submit">Get started</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script>
+        function adminLogin() {
+
+            let data = {
+                username: $('#username').val(),
+                password: $('#password').val(),
+            }
+
+            $.ajax({
+                url: '../../api/admin/adminLogin.php',
+                data: data,
+                method: 'POST',
+                success: function(response) {
+                    if (response.status) {
+                        alert('Welcome ' + response.username + '!');
+                        window.location.href = '../index.php';
+                        console.log(response);
+                    } else {
+                        alert(response.message);
+                        console.log(response);
+                    }
+                },
+                error: function(error) {
+                    alert('Error occurred during login. Please try again.');
+                    console.error(error);
+                }
+            })
+        }
+    </script>
 
 </body>
 
