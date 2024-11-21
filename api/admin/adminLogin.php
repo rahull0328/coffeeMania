@@ -9,12 +9,15 @@
     $result = mysqli_query($con, $query);
     $verify = mysqli_fetch_assoc($result);
     if($verify){
-        session_start();
         $_SESSION['admin_id'] = $verify['id'];
         $_SESSION['username'] = $verify['name'];
-        echo json_encode(["success" => true, "message" => "Verified"]);
-        header('Location: ../../admin/index.php');
+        echo json_encode([
+            "status" => true, 
+            "message" => "Welcome",
+            "username" => $username,
+        ]);
     } else {
-        echo json_encode(["error" => false, "message" => 'Not received any data']);
-        header('Location: ../../admin/pages/login.php');
+        echo json_encode(["status" => false, "message" => 'Invalid Username Or Password']);
     }
+
+    mysqli_close($con);

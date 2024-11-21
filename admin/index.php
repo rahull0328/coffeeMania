@@ -1,15 +1,17 @@
 <?php
+
 require "../assets/includes/config.php";
-include pathOf('admin/assets/includes/sidebar.php');
-include pathOf('admin/assets/includes/header.php');
-$id = $_SESSION['admin_id'];
 
 if (!isset($_SESSION['admin_id'])) {
   header("Location: ./pages/login.php");
   exit;
 }
 
+include pathOf('admin/assets/includes/sidebar.php');
+include pathOf('admin/assets/includes/header.php');
 
+
+$id = $_SESSION['admin_id'];
 ?>
 
 <div class="container-fluid">
