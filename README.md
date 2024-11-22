@@ -30,7 +30,7 @@ Welcome to the **CoffeeMania** project! This is a full-stack web application des
 - **Category Management**: Effortlessly create and manage categories to keep products well-organized.
 - **Product Management**: Admins can add, edit, or remove products, ensuring the menu stays updated.
 - **User Monitoring**: View and monitor current user activity on the site, providing insights into user engagement.
-
+- **Order Monitoring**: View and monitor current orders activity on the site, providing insights into order engagement.
 ---
 
 ### 💻 **Tech Stack**
