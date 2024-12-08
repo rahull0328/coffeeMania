@@ -1,9 +1,9 @@
 # ☕ **CoffeeMania**
 
+<img src="assets/images/coffeeMania.png" />
 Welcome to the **CoffeeMania** project! This is a full-stack web application designed for a fictional café, providing users with a seamless experience to explore the café's offerings, place orders, and manage their accounts. Additionally, the platform includes an intuitive **Admin Panel** to manage products, categories, and user data.
 
 ---
-
 ### 📝 **Table of Contents**
 - [Features](#-features)
   - [User-Facing Features](#user-facing-features)
